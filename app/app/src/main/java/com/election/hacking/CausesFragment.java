@@ -64,7 +64,7 @@ public class CausesFragment extends Fragment {
                         }
 
                         donationsView.setText("$" + String.valueOf(user.getTotalDonated()));
-                        setupSelectedCause(user.getPledgedOrganization());
+                        setupSelectedCause(user.getPledgedOrganization(), false);
                     }
 
                     @Override
@@ -97,10 +97,10 @@ public class CausesFragment extends Fragment {
             return;
         }
 
-        setupSelectedCause((Organization) data.getSerializableExtra(KEY_ORGANIZATION));
+        setupSelectedCause((Organization) data.getSerializableExtra(KEY_ORGANIZATION), true);
     }
 
-    private void setupSelectedCause(final Organization pledgedOrganization) {
+    private void setupSelectedCause(final Organization pledgedOrganization, boolean showSnackbar) {
         final View viewById = getActivity().findViewById(R.id.no_cause_selected_text);
         if (pledgedOrganization == null) {
             viewById.setVisibility(View.VISIBLE);
@@ -110,7 +110,9 @@ public class CausesFragment extends Fragment {
             final View view = OrganizationAdapter.bindView(getActivity(), null, pledgedOrganization);
             selectedCauseHolder.removeAllViews();
             selectedCauseHolder.addView(view);
-            Snackbar.make(getActivity().findViewById(android.R.id.content), "Thanks for pledging your cash back rewards to " + pledgedOrganization.getOrganizationTitle() + "!", Snackbar.LENGTH_LONG).show();
+            if (showSnackbar) {
+                Snackbar.make(getActivity().findViewById(android.R.id.content), "Thanks for pledging your cash back rewards to " + pledgedOrganization.getOrganizationTitle() + "!", Snackbar.LENGTH_LONG).show();
+            }
         }
     }
 }
