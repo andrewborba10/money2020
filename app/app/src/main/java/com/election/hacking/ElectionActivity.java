@@ -1,10 +1,12 @@
 package com.election.hacking;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -46,7 +48,7 @@ public class ElectionActivity extends AppCompatActivity {
             List<Politician> candidates = election.getPoliticians();
             if (candidates != null) {
                 for (int i = 0; i < candidates.size(); i++){
-                    Politician candidate = candidates.get(i);
+                    final Politician candidate = candidates.get(i);
                     View candidateView = LayoutInflater.from(this).inflate(R.layout.item_election_candidate_no_bg, null);
                     TextView candidateName = (TextView) candidateView.findViewById(R.id.candidateName);
                     TextView candidateParty = (TextView) candidateView.findViewById(R.id.candidateParty);
@@ -55,9 +57,27 @@ public class ElectionActivity extends AppCompatActivity {
                     candidateImage.setBackgroundResource(ElectionUtil.getDrawableForCandidateParty(candidate));
                     candidateName.setText(candidate.getName());
                     candidateParty.setText(candidate.getParty());
+                    candidateView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(ElectionActivity.this, PoliticianActivity.class);
+                            intent.putExtra(PoliticianActivity.KEY_POLITICIAN, candidate);
+                            startActivity(intent);
+                        }
+                    });
                     candidateListLayout.addView(candidateView);
                 }
             }
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

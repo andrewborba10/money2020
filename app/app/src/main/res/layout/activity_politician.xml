@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/container_margin"
-    android:paddingRight="@dimen/container_margin"
-    android:paddingBottom="@dimen/container_margin">
+    android:paddingRight="@dimen/container_margin">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -33,22 +32,22 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="8dp"
-            android:scaleType="fitCenter" />
+            android:scaleType="centerCrop" />
 
     </FrameLayout>
 
     <TextView
-        android:id="@+id/electionTitle"
+        android:id="@+id/politicianName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:gravity="center_horizontal"
         android:textSize="20sp"
         android:textColor="@android:color/white"
-        android:text="Election Title" />
+        android:text="Politician Name" />
 
     <TextView
-        android:id="@+id/electionDescription"
+        android:id="@+id/politicianParty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
@@ -56,85 +55,49 @@
         android:textStyle="italic"
         android:textSize="12sp"
         android:textColor="@android:color/white"
-        android:text="This is an election description." />
+        android:text="INDEPENDENT" />
 
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="@dimen/card_padding_vertical"
+        android:layout_marginBottom="@dimen/card_padding_vertical"
         android:background="@color/divider_transparent_white" />
 
-    <TableLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:stretchColumns="*">
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="@dimen/header_padding_vertical"
+        android:paddingBottom="@dimen/header_padding_vertical"
+        android:paddingLeft="@dimen/header_padding_horizontal"
+        android:paddingRight="@dimen/header_padding_horizontal"
+        android:background="@drawable/background_border"
+        android:gravity="center"
+        android:textAllCaps="true"
+        android:textStyle="italic"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        android:text="Related Causes" />
 
-        <TableRow
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textAllCaps="true"
-                android:textSize="12sp"
-                android:textColor="@android:color/white"
-                android:text="Start Date" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textAllCaps="true"
-                android:textSize="12sp"
-                android:textColor="@android:color/white"
-                android:text="End Date" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-            <TextView
-                android:id="@+id/electionStartDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textStyle="bold"
-                android:textColor="@android:color/white"
-                android:textSize="12sp"
-                android:text="01/01/1970" />
-
-            <TextView
-                android:id="@+id/electionEndDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textStyle="bold"
-                android:textColor="@android:color/white"
-                android:textSize="12sp"
-                android:text="01/01/1971" />
-
-        </TableRow>
-
-    </TableLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/divider_transparent_white" />
-
-    <LinearLayout
-        android:id="@+id/candidateListLayout"
+    <ListView
+        android:id="@+id/relatedCausesList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical" />
+        android:layout_marginTop="@dimen/card_padding_vertical"
+        android:paddingBottom="8dp"
+        android:divider="@null"
+        android:clipToPadding="false" />
+
+    <TextView
+        android:id="@+id/causesListEmptyView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textStyle="italic"
+        android:textColor="@android:color/white"
+        android:alpha="0.5"
+        android:text="No causes available" />
 
 </LinearLayout>

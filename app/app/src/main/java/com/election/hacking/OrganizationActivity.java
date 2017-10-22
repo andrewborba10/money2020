@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -43,7 +44,7 @@ public class OrganizationActivity extends AppCompatActivity {
 
         final Organization organization = (Organization) getIntent().getSerializableExtra(KEY_ORGANIZATION);
         if (organization != null) {
-            if (organizationImage != null) {
+            if (organization.getOrganizationImageUrl() != null) {
                 organizationImageContainer.setBackgroundColor(Color.WHITE);
                 organizationHeartIcon.setVisibility(View.GONE);
                 Picasso
@@ -94,5 +95,15 @@ public class OrganizationActivity extends AppCompatActivity {
                         });
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
