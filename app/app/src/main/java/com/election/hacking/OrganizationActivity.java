@@ -49,6 +49,7 @@ public class OrganizationActivity extends AppCompatActivity {
                 Picasso
                         .with(this)
                         .load(organization.getOrganizationImageUrl())
+                        .fit()
                         .into(organizationImage);
             } else {
                 organizationImageContainer.setBackgroundColor(Color.TRANSPARENT);

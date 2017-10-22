@@ -65,6 +65,7 @@ public class OrganizationAdapter extends BaseAdapter {
             Picasso
                     .with(context)
                     .load(organization.getOrganizationImageUrl())
+                    .fit()
                     .into(holder.organizationImage);
         } else {
             setImageContainerColor(R.color.gray, convertView);

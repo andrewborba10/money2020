@@ -135,9 +135,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void setActiveFragment(Fragment fragment, String tag) {
         FragmentManager fm = getSupportFragmentManager();
-        Fragment foundFragment = getSupportFragmentManager().findFragmentByTag(tag);
-        if (foundFragment == null || !foundFragment.isVisible()) {
+        Fragment foundFragmentByTag = fm.findFragmentByTag(tag);
+        if (foundFragmentByTag == null || !foundFragmentByTag.isVisible()) {
+            Fragment foundFragmentById = fm.findFragmentById(R.id.fragmentContainer);
             FragmentTransaction ft = fm.beginTransaction();
+            if (foundFragmentById != null) {
+                ft.remove(foundFragmentById);
+            }
             ft.replace(R.id.fragmentContainer, fragment, tag);
             ft.commit();
             drawerLayout.closeDrawers();
