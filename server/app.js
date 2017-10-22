@@ -6,13 +6,13 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
+var button = require('./routes/button');
 var users = require('./routes/users');
 var elections = require('./routes/elections');
 var organizations = require('./routes/organizations');
 var votes = require('./routes/votes');
 var verify = require('./routes/verify');
 var rewards = require('./routes/rewards')
-
 var app = express();
 
 // view engine setup
@@ -28,9 +28,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
+app.use('/button', button);
 app.use('/users', users);
 app.use('/elections', elections);
 app.use('/organizations', organizations);
+app.use('/verify', verify);
 app.use('/votes', votes);
 app.use('/verify', verify);
 app.use('/rewards', rewards);
