@@ -8,8 +8,6 @@ router.post('/', function(req, res, next) {
 	var dob = req.body.dateOfBirth;
     var lastName = req.body.lastName;
     
-    
-
     res.status(200).send(
         {
             "Success": "Successfully verified identity.", 
