@@ -10,6 +10,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.election.hacking.model.Election;
+import com.election.hacking.model.Politician;
+
 import java.util.List;
 
 public class ElectionActivity extends AppCompatActivity {

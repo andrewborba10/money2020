@@ -1,5 +1,7 @@
 package com.election.hacking;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,6 +19,11 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.election.hacking.model.GetElectionsResponse;
+
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK;
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
@@ -25,6 +32,12 @@ public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
+
+    public static void start(final Context context) {
+        final Intent intent = new Intent(context, MainActivity.class);
+        intent.addFlags(FLAG_ACTIVITY_CLEAR_TASK | FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {

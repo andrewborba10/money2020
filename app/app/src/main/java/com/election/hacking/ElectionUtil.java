@@ -2,6 +2,8 @@ package com.election.hacking;
 
 import android.support.annotation.DrawableRes;
 
+import com.election.hacking.model.Politician;
+
 public class ElectionUtil {
     @DrawableRes
     public static int getDrawableForCandidateParty(final Politician politician) {

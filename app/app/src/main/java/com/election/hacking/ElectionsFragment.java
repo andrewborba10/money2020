@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
+import com.election.hacking.model.Election;
+
 import it.moondroid.coverflow.components.ui.containers.FeatureCoverFlow;
 
 public class ElectionsFragment extends Fragment {

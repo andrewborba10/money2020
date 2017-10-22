@@ -11,7 +11,7 @@ router.post('/', function(req, res, next) {
     res.status(200).send(
         {
             "Success": "Successfully verified identity.", 
-            "token": "asbskdiekdokslkadfadsf342"
+            "token": "Nate"
         }
     );
 });

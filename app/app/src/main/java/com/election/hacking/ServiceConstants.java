@@ -29,6 +29,9 @@ public class ServiceConstants {
     // Elections API
     public static final String KEY_ELECTIONS = "elections";
 
+    // Organizations API
+    public static final String KEY_ORGANIZATIONS = "organizations";
+
     // Politician
     public static final String KEY_POLITICIAN_ID = "personId";
     public static final String KEY_POLITICIAN_NAME = "name";
@@ -42,4 +45,9 @@ public class ServiceConstants {
     public static final String KEY_ELECTION_DATE_OPEN = "dateOpen";
     public static final String KEY_ELECTION_DATE_CLOSED = "dateClosed";
     public static final String KEY_ELECTION_IS_OPEN = "isOpen";
+
+    // Organization
+    public static final String KEY_ORGANIZATION_ID = "organizationId";
+    public static final String KEY_ORGANIZATION_TITLE = "title";
+    public static final String KEY_ORGANIZATION_DESCRIPTION = "description";
 }

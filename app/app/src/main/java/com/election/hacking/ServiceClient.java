@@ -2,8 +2,12 @@ package com.election.hacking;
 
 import android.os.AsyncTask;
 import android.support.annotation.MainThread;
-import android.util.Log;
 
+import com.election.hacking.model.GetButtonResponse;
+import com.election.hacking.model.GetElectionsResponse;
+import com.election.hacking.model.GetOrganizationsResponse;
+import com.election.hacking.model.IdentityVerificationRequest;
+import com.election.hacking.model.IdentityVerificationResponse;
 import com.google.gson.Gson;
 import com.url.utils.Request;
 import com.url.utils.Response;
@@ -62,6 +66,27 @@ public class ServiceClient {
                 .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
+    public void getOrganizations(final Callback<GetOrganizationsResponse> callback) {
+        final Request urlRequest = UrlClient
+                .create()
+                .get("http://10.101.1.208:3000/organizations")
+                .ensureSuccess();
+
+        new ServiceCallTask<>(urlRequest, GetOrganizationsResponse.class, callback)
+                .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    public void getOrganizations(final int politicianId,
+                                 final Callback<GetOrganizationsResponse> callback) {
+        final Request urlRequest = UrlClient
+                .create()
+                .get("http://10.101.1.208:3000/organizations/" + politicianId)
+                .ensureSuccess();
+
+        new ServiceCallTask<>(urlRequest, GetOrganizationsResponse.class, callback)
+                .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
     private class ServiceCallTask<T> extends AsyncTask<Object, Void, T> {
 
         private final Request mRequest;
@@ -97,7 +122,6 @@ public class ServiceClient {
 
         @MainThread
         protected void onPostExecute(final T result) {
-            Log.d("BORBA", "result: " + result.toString());
             mCallback.onSuccess(result);
         }
     }

@@ -6,11 +6,18 @@ router.get('/:votedPersonId', function(req, res, next) {
 	var votedPersonId = req.params.votedPersonId;
 	var orgs = organizations.getRelatedOrganizations(votedPersonId);
 
-	res.json(orgs);
+	res.json({'organizations': orgs});
 });
 
 router.get('/', function(req, res, next) {
-	res.json(organizations.getOrganizations());
+	res.json({'organizations': organizations.getOrganizations()});
+});
+
+router.post('/pledged', function(req, res, next) {
+	userId = req.body.token;
+	organizationId = req.body.organizationId;
+
+	res.json({'organization': organizations.pledgeOrganization(userId, organizationId)})
 });
 
 module.exports = router;
