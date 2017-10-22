@@ -14,9 +14,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+
     private ElectionAdapter electionAdapter;
+    private OrganizationAdapter organizationAdapter;
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
@@ -54,6 +59,24 @@ public class MainActivity extends AppCompatActivity {
                         Log.e(TAG, "Failed to load election data");
                     }
                 });
+
+        List<String> tags = new ArrayList<>();
+        tags.add("ASDF");
+        tags.add("ASDFA");
+        tags.add("ASDFD");
+        tags.add("ASDFF");
+        tags.add("ASDFW");
+
+        List<Organization> organizations = new ArrayList<>();
+        organizations.add(new Organization(tags, "asdfasdf", "organization name", "this is a description", "$0.01", "$10.01"));
+        organizations.add(new Organization(tags, "asdfasdf", "organization name", "this is a description", "$0.01", "$10.01"));
+        organizations.add(new Organization(tags, "asdfasdf", "organization name", "this is a description", "$0.01", "$10.01"));
+        organizations.add(new Organization(tags, "asdfasdf", "organization name", "this is a description", "$0.01", "$10.01"));
+        organizations.add(new Organization(tags, "asdfasdf", "organization name", "this is a description", "$0.01", "$10.01"));
+        organizations.add(new Organization(tags, "asdfasdf", "organization name", "this is a description", "$0.01", "$10.01"));
+        organizations.add(new Organization(tags, "asdfasdf", "organization name", "this is a description", "$0.01", "$10.01"));
+
+        organizationAdapter = new OrganizationAdapter(this, organizations);
 
         electionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,5 +129,9 @@ public class MainActivity extends AppCompatActivity {
 
     public ElectionAdapter getElectionAdapter() {
         return electionAdapter;
+    }
+
+    public OrganizationAdapter getOrganizationAdapter() {
+        return organizationAdapter;
     }
 }
