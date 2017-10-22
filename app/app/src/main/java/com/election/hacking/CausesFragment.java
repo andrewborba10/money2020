@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -109,6 +110,7 @@ public class CausesFragment extends Fragment {
             final View view = OrganizationAdapter.bindView(getActivity(), null, pledgedOrganization);
             selectedCauseHolder.removeAllViews();
             selectedCauseHolder.addView(view);
+            Snackbar.make(getActivity().findViewById(android.R.id.content), "Thanks for pledging your cash back rewards to " + pledgedOrganization.getOrganizationTitle() + "!", Snackbar.LENGTH_LONG).show();
         }
     }
 }

@@ -14,7 +14,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.election.hacking.model.Organization;
 import com.election.hacking.model.PledgeResponse;
@@ -86,12 +85,6 @@ public class OrganizationActivity extends AppCompatActivity {
                                 final Organization pledgedOrganization = result.getOrganization();
                                 intent.putExtra(CausesFragment.KEY_ORGANIZATION, pledgedOrganization);
                                 setResult(Activity.RESULT_OK, intent);
-                                Toast
-                                        .makeText(
-                                                OrganizationActivity.this,
-                                                "Pledged your cash back rewards to " + pledgedOrganization.getOrganizationTitle(),
-                                                Toast.LENGTH_LONG)
-                                        .show();
                                 finish();
                             }
 
