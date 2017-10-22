@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.election.hacking.model.IdentityVerificationRequest;
 import com.election.hacking.model.IdentityVerificationResponse;
@@ -18,6 +19,8 @@ import java.text.ParseException;
 
 public class VerifyWithPersonalInfoActivity extends AppCompatActivity {
     private static final String TAG = "VerifyWPersInfActivity";
+
+    private TextView verifyButton;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -28,7 +31,9 @@ public class VerifyWithPersonalInfoActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Login");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        findViewById(R.id.verifyButton).setOnClickListener(new View.OnClickListener() {
+        verifyButton = (TextView) findViewById(R.id.verifyButton);
+
+        verifyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 verify();
@@ -46,13 +51,22 @@ public class VerifyWithPersonalInfoActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void setVerifyButtonEnabled(boolean enabled) {
+        verifyButton.setEnabled(enabled);
+        verifyButton.setBackgroundResource(enabled ? android.R.color.white : R.color.gray);
+        verifyButton.setText(enabled ? R.string.login : R.string.loading);
+    }
+
     private void verify() {
+        setVerifyButtonEnabled(false);
+
         final String ssn = getTextFromEditText(R.id.ssn);
         final String dateOfBirth = getTextFromEditText(R.id.dateOfBirth);
         final String lastName = getTextFromEditText(R.id.lastName);
 
         if (ssn.isEmpty() || dateOfBirth.isEmpty() || lastName.isEmpty()) {
             Snackbar.make(findViewById(android.R.id.content), "Please fill in all fields.", Snackbar.LENGTH_SHORT).show();
+            setVerifyButtonEnabled(true);
         } else {
             try {
                 long ssnLong = Long.parseLong(ssn);
@@ -72,11 +86,14 @@ public class VerifyWithPersonalInfoActivity extends AppCompatActivity {
                             @Override
                             public void onError(final Exception e) {
                                 Log.e(TAG, "Failed to verify user: " + e);
+                                setVerifyButtonEnabled(true);
                             }
                         });
             } catch (NumberFormatException e) {
+                setVerifyButtonEnabled(true);
                 Snackbar.make(findViewById(android.R.id.content), "Please enter only numbers into SSN field.", Snackbar.LENGTH_SHORT).show();
             } catch (ParseException e) {
+                setVerifyButtonEnabled(true);
                 Snackbar.make(findViewById(android.R.id.content), "Please date of birth in the format 'mm/dd/yyyy'.", Snackbar.LENGTH_SHORT).show();
             }
         }
