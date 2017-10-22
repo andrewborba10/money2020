@@ -8,6 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.election.hacking.model.Developer;
+
+import java.util.List;
+
 public class AboutFragment extends Fragment {
     public static final String FRAGMENT_TAG = "about";
 
@@ -18,7 +22,7 @@ public class AboutFragment extends Fragment {
 
         LinearLayout developerListLayout = (LinearLayout) rootView.findViewById(R.id.developerListLayout);
 
-
+//        List<Developer> candidates = election.getPoliticians();
 
         return rootView;
     }
