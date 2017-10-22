@@ -38,6 +38,7 @@ public class PoliticianActivity extends AppCompatActivity {
         TextView politicianName = (TextView) findViewById(R.id.politicianName);
         TextView politicianParty = (TextView) findViewById(R.id.politicianParty);
         ListView relatedCausesList = (ListView) findViewById(R.id.relatedCausesList);
+        TextView submitVoteButton = (TextView) findViewById(R.id.submitVoteButton);
 
         Politician politician = (Politician) getIntent().getSerializableExtra(KEY_POLITICIAN);
         if (politician != null) {
@@ -66,6 +67,13 @@ public class PoliticianActivity extends AppCompatActivity {
                 Intent intent = new Intent(PoliticianActivity.this, OrganizationActivity.class);
                 intent.putExtra(OrganizationActivity.KEY_ORGANIZATION, organization);
                 startActivity(intent);
+            }
+        });
+
+        submitVoteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO
             }
         });
     }
