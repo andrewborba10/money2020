@@ -1,11 +1,13 @@
 package com.election.hacking;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -57,6 +59,15 @@ public class PoliticianActivity extends AppCompatActivity {
         organizationAdapter = new OrganizationAdapter(this, new ArrayList<Organization>()); // TODO
         relatedCausesList.setAdapter(organizationAdapter);
         relatedCausesList.setEmptyView(findViewById(R.id.causesListEmptyView));
+        relatedCausesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Organization organization = (Organization) organizationAdapter.getItem(position);
+                Intent intent = new Intent(PoliticianActivity.this, OrganizationActivity.class);
+                intent.putExtra(OrganizationActivity.KEY_ORGANIZATION, organization);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
