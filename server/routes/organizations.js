@@ -2,9 +2,9 @@ var express = require('express');
 var organizations = require('../controllers/organizations.js');
 var router = express.Router();
 
-router.get('/:votedPersonId', function(req, res, next) {
-	var votedPersonId = req.params.votedPersonId;
-	var orgs = organizations.getRelatedOrganizations(votedPersonId);
+router.get('/:politicianId', function(req, res, next) {
+	var politicianId = req.params.politicianId;
+	var orgs = organizations.getRelatedOrganizations(politicianId);
 
 	res.json({'organizations': orgs});
 });

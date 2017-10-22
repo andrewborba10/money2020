@@ -203,7 +203,8 @@ var organizationsDb = new Database([
 		"description" : "We believe that the best way to unlock human potential is through the power of creative collaboration. That's why we build partnerships between businesses, NGOs, governments, and individuals everywhere to work faster, leaner, and better; to find solutions that last; and to transform lives and communities from what they are today to what they can be, tomorrow.",
 		"relatedPersonIds" : [0, 3, 6, 9, 12],
 		"totalDonations" : "$7.1m",
-		"imageUrl" : "http://www.clintonfoundation.org/sites/all/themes/custom/cf/cf-logo-big.png"	
+		"imageUrl" : "http://www.clintonfoundation.org/sites/all/themes/custom/cf/cf-logo-big.png",
+		"tags" : ["Universal Health Control", "Climate Control", "Disaster Relief"]
 	},
 	{
 		"organizationId" : 2,
@@ -211,7 +212,8 @@ var organizationsDb = new Database([
 		"description" : "The American Civil Liberties Union was founded in 1920 and is our nation's guardian of liberty. The ACLU works in the courts, legislatures and communities to defend and preserve the individual rights and liberties guaranteed to all people in this country by the Constitution and laws of the United States.",
 		"relatedPersonIds" : [0, 3, 6, 9, 12],
 		"totalDonations" : "$5.7m",
-		"imageUrl" : "https://upload.wikimedia.org/wikipedia/en/thumb/f/f3/American_Civil_Liberties_Union_logo.svg/1280px-American_Civil_Liberties_Union_logo.svg.png"
+		"imageUrl" : "https://upload.wikimedia.org/wikipedia/en/thumb/f/f3/American_Civil_Liberties_Union_logo.svg/1280px-American_Civil_Liberties_Union_logo.svg.png",
+		"tags" : []
 	},
 	{
 		"organizationId" : 3,
@@ -219,7 +221,8 @@ var organizationsDb = new Database([
 		"description" : "The National Organization for Women is the largest organization of feminist grassroots activists in the United States. NOW has hundreds of chapters and hundreds of thousands of members and activists in all 50 states and the District of Columbia.",
 		"relatedPersonIds" : [0, 3, 6, 9, 12],
 		"totalDonations" : "$9.8m",
-		"imageUrl" : "http://bostonnow.org/wp-content/uploads/2016/09/NOW.png"	
+		"imageUrl" : "http://bostonnow.org/wp-content/uploads/2016/09/NOW.png",
+		"tags" : []
 	},
 	{
 		"organizationId" : 4,
@@ -227,7 +230,8 @@ var organizationsDb = new Database([
 		"description" : "EarthJustice is the largest nonprofit environmental law organization in the country, working to protect wildlife, for healthy communities, and for cleaner energy options. The organization represents its clients free of charge.",
 		"relatedPersonIds" : [2, 5, 8, 11, 14],
 		"totalDonations" : "$6.8m",
-		"imageUrl" : "https://yt3.ggpht.com/-W_3EWqxKSLM/AAAAAAAAAAI/AAAAAAAAAAA/43OT-enqW4Y/s900-c-k-no-mo-rj-c0xffffff/photo.jpg"
+		"imageUrl" : "https://yt3.ggpht.com/-W_3EWqxKSLM/AAAAAAAAAAI/AAAAAAAAAAA/43OT-enqW4Y/s900-c-k-no-mo-rj-c0xffffff/photo.jpg",
+		"tags" : []
 	},
 	{
 		"organizationId" : 5,
@@ -235,7 +239,8 @@ var organizationsDb = new Database([
 		"description" : "We want to fight the power of Big Money in politics by helping small dollar donors engage in the political process. We want more citizens to vote and run for office. And we want to give people a platform to take action - whether it’s by joining a political community, or organizing one of their own.",
 		"relatedPersonIds" : [2, 5, 8, 11, 14],
 		"totalDonations" : "$1.5m",
-		"imageUrl" : "https://res.cloudinary.com/crowdpac/image/upload/logo-square.jpg"	
+		"imageUrl" : "https://res.cloudinary.com/crowdpac/image/upload/logo-square.jpg",
+		"tags" : []
 	},
 	{
 		"organizationId" : 6,
@@ -243,7 +248,8 @@ var organizationsDb = new Database([
 		"description" : "The mission of The Heritage Foundation is to formulate and promote conservative public policies based on the principles of free enterprise, limited government, individual freedom, traditional American values, and a strong national defense.",
 		"relatedPersonIds" : [1, 4, 7, 10, 13],
 		"totalDonations" : "$5.2m",
-		"imageUrl" : "http://dailysignal.com/wp-content/themes/daily-signal/assets/images/brand/the-heritage-foundation-logo-blue.png"
+		"imageUrl" : "http://dailysignal.com/wp-content/themes/daily-signal/assets/images/brand/the-heritage-foundation-logo-blue.png",
+		"tags" : []		
 	},
 	{
 		"organizationId" : 7,
@@ -251,40 +257,41 @@ var organizationsDb = new Database([
 		"description" : "Planned Parenthood is a trusted health care provider, an informed educator, a passionate advocate, and a global partner helping similar organizations around the world. Planned Parenthood delivers vital reproductive health care, sex education, and information to millions of people worldwide.",
 		"relatedPersonIds" : [1, 4, 7, 10, 13],
 		"totalDonations" : "$2.4m",
-		"imageUrl" : "https://upload.wikimedia.org/wikipedia/en/thumb/2/2c/Planned_Parenthood_logo.svg/1200px-Planned_Parenthood_logo.svg.png"
+		"imageUrl" : "https://upload.wikimedia.org/wikipedia/en/thumb/2/2c/Planned_Parenthood_logo.svg/1200px-Planned_Parenthood_logo.svg.png",
+		"tags" : []		
 	}
 ]);
 
 var votesDb = new Database([
 	{
 		"electionId" : 4,
-		"votedPersonId" : 9,
+		"politicianId" : 9,
 		"votes" : 140376
 	},
 	{
 		"electionId" : 4,
-		"votedPersonId" : 10,
+		"politicianId" : 10,
 		"votes" : 72459
 	},
 	{
 		"electionId" : 4,
-		"votedPersonId" : 11,
+		"politicianId" : 11,
 		"votes" : 12835
 	},
 
 	{
 		"electionId" : 5,
-		"votedPersonId" : 12,
+		"politicianId" : 12,
 		"votes" : 110287
 	},
 	{
 		"electionId" : 5,
-		"votedPersonId" : 13,
+		"politicianId" : 13,
 		"votes" : 85935
 	},
 	{
 		"electionId" : 5,
-		"votedPersonId" : 14,
+		"politicianId" : 14,
 		"votes" : 3778
 	}	
 ]);
@@ -292,6 +299,8 @@ var votesDb = new Database([
 var rewardsDb = new Database([]);
 
 var usersDb = new Database([]);
+
+var userVotesDb = new Database([]);
 
 module.exports = {
 	getElectionsDb : function() {
@@ -308,5 +317,8 @@ module.exports = {
 	},
 	getUsersDb : function() {
 		return usersDb;
+	},
+	getUserVotesDb : function() {
+		return userVotesDb;
 	}
 };

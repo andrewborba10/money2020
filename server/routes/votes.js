@@ -3,10 +3,11 @@ var votes = require('../controllers/votes.js');
 var router = express.Router();
 
 router.post('/', function(req, res, next) {
+	var userId = req.body.token;
 	var electionId = req.body.electionId;
-	var votedPersonId = req.body.votedPersonId;
+	var politicianId = req.body.politicianId;
 
-	votes.submitVote(electionId, votedPersonId);
+	votes.submitVote(userId, electionId, politicianId);
 	res.status(200).json({});
 });
 
