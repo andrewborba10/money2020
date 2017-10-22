@@ -1,7 +1,6 @@
 package com.election.hacking;
 
-import android.content.Context;
-import android.widget.Toast;
+import android.app.Activity;
 
 import com.election.hacking.model.ElectionUserPair;
 import com.election.hacking.model.GetVoteResponse;
@@ -38,7 +37,7 @@ public class VotingKeyValueStore {
                 });
     }
 
-    public synchronized void vote(final Context context, final String userToken, final int electionId, final int politicianId) {
+    public synchronized void vote(final Activity activity, final String userToken, final int electionId, final int politicianId) {
         ServiceClient
                 .getInstance()
                 .vote(userToken, electionId, politicianId, new ServiceClient.LogErrorCallback<Void>() {
@@ -46,9 +45,7 @@ public class VotingKeyValueStore {
                     public void onSuccess(final Void result) {
                         update(userToken, electionId, politicianId);
 
-                        Toast
-                                .makeText(context, "Successfully voted!", Toast.LENGTH_SHORT)
-                                .show();
+                        activity.finish();
                     }
                 });
     }
