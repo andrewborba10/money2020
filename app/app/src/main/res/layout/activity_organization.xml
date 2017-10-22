@@ -10,7 +10,7 @@
         android:orientation="vertical"
         android:paddingLeft="@dimen/container_margin"
         android:paddingRight="@dimen/container_margin"
-        android:paddingBottom="@dimen/container_margin">
+        android:paddingBottom="@dimen/button_height">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"

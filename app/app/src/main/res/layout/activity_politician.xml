@@ -1,103 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="@dimen/container_margin"
-    android:paddingRight="@dimen/container_margin">
+    android:layout_height="match_parent">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:titleTextColor="@android:color/white"
-        app:theme="@style/ToolbarColoredBackArrow" />
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/container_margin"
+        android:paddingRight="@dimen/container_margin"
+        android:paddingBottom="@dimen/button_height">
 
-    <FrameLayout
-        android:id="@+id/politicianImageContainer"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:layout_gravity="center_horizontal">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:titleTextColor="@android:color/white"
+            app:theme="@style/ToolbarColoredBackArrow" />
 
-        <ImageView
-            android:id="@+id/politicianIcon"
+        <FrameLayout
+            android:id="@+id/politicianImageContainer"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/politicianIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_person_gray" />
+
+            <ImageView
+                android:id="@+id/politicianImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                android:scaleType="centerCrop" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/politicianName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            android:text="Politician Name" />
+
+        <TextView
+            android:id="@+id/politicianParty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:gravity="center_horizontal"
+            android:textStyle="italic"
+            android:textSize="12sp"
+            android:textColor="@android:color/white"
+            android:text="INDEPENDENT" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/card_padding_vertical"
+            android:layout_marginBottom="@dimen/card_padding_vertical"
+            android:background="@color/divider_transparent_white" />
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_person_gray" />
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="@dimen/header_padding_vertical"
+            android:paddingBottom="@dimen/header_padding_vertical"
+            android:paddingLeft="@dimen/header_padding_horizontal"
+            android:paddingRight="@dimen/header_padding_horizontal"
+            android:background="@drawable/background_border"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:textStyle="italic"
+            android:textSize="16sp"
+            android:textColor="@android:color/white"
+            android:text="Related Causes" />
 
-        <ImageView
-            android:id="@+id/politicianImage"
+        <ListView
+            android:id="@+id/relatedCausesList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="8dp"
-            android:scaleType="centerCrop" />
+            android:layout_marginTop="@dimen/card_padding_vertical"
+            android:paddingBottom="8dp"
+            android:divider="@null"
+            android:clipToPadding="false" />
+
+        <TextView
+            android:id="@+id/causesListEmptyView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textStyle="italic"
+            android:textColor="@android:color/white"
+            android:alpha="0.5"
+            android:text="No causes available" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:layout_alignParentBottom="true"
+        android:background="@color/green">
+
+        <TextView
+            android:id="@+id/submitVoteButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingLeft="@dimen/container_margin"
+            android:paddingRight="@dimen/container_margin"
+            android:background="?attr/selectableItemBackground"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:clickable="true"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@android:color/white"
+            android:text="Submit Vote" />
 
     </FrameLayout>
 
-    <TextView
-        android:id="@+id/politicianName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:gravity="center_horizontal"
-        android:textSize="20sp"
-        android:textColor="@android:color/white"
-        android:text="Politician Name" />
-
-    <TextView
-        android:id="@+id/politicianParty"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:gravity="center_horizontal"
-        android:textStyle="italic"
-        android:textSize="12sp"
-        android:textColor="@android:color/white"
-        android:text="INDEPENDENT" />
-
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="@dimen/card_padding_vertical"
-        android:layout_marginBottom="@dimen/card_padding_vertical"
-        android:background="@color/divider_transparent_white" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:paddingTop="@dimen/header_padding_vertical"
-        android:paddingBottom="@dimen/header_padding_vertical"
-        android:paddingLeft="@dimen/header_padding_horizontal"
-        android:paddingRight="@dimen/header_padding_horizontal"
-        android:background="@drawable/background_border"
-        android:gravity="center"
-        android:textAllCaps="true"
-        android:textStyle="italic"
-        android:textSize="16sp"
-        android:textColor="@android:color/white"
-        android:text="Related Causes" />
-
-    <ListView
-        android:id="@+id/relatedCausesList"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/card_padding_vertical"
-        android:paddingBottom="8dp"
-        android:divider="@null"
-        android:clipToPadding="false" />
-
-    <TextView
-        android:id="@+id/causesListEmptyView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:textStyle="italic"
-        android:textColor="@android:color/white"
-        android:alpha="0.5"
-        android:text="No causes available" />
-
-</LinearLayout>
+</RelativeLayout>
