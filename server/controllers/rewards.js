@@ -26,6 +26,8 @@ function deductRewards(userId, amountDeducted) {
 	user = usersDb.findByProperty('userId', userId);
 	user['totalDonations'] = user['totalDonations'] + amountDeducted;
 
+	// TODO: theoretically would update organization for total donations,
+	// but our organization supports strings and in millions of dollars...
 
 	console.log(rewards);
 }
