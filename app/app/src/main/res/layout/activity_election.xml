@@ -47,7 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="@dimen/card_padding_vertical"
-        android:background="#33FFFFFF" />
+        android:background="@color/divider_transparent_white" />
 
     <TableLayout
         android:layout_width="match_parent"
@@ -113,7 +113,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#33FFFFFF" />
+        android:background="@color/divider_transparent_white" />
 
     <LinearLayout
         android:id="@+id/candidateListLayout"

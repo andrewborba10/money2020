@@ -28,10 +28,11 @@
         android:layout_height="match_parent"
         app:coverHeight="@dimen/election_height"
         app:coverWidth="@dimen/election_width"
-        app:maxScaleFactor="1.5"
-        app:reflectionGap="0px"
+        app:maxScaleFactor="1.25"
+        app:reflectionGap="36dp"
         app:rotationThreshold="0.5"
         app:scalingThreshold="0.5"
+        app:adjustPositionMultiplier="0.55"
         app:spacing="0.6" />
 
 </LinearLayout>
