@@ -14,4 +14,6 @@
     <dimen name="election_width">240dp</dimen>
     <dimen name="election_icon_circle">36dp</dimen>
     <dimen name="election_candidate_padding_vertical">36dp</dimen>
+    <dimen name="header_padding_vertical">12dp</dimen>
+    <dimen name="header_padding_horizontal">12dp</dimen>
 </resources>

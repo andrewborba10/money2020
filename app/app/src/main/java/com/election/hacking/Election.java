@@ -1,46 +1,83 @@
 package com.election.hacking;
 
+import com.google.gson.annotations.SerializedName;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
-public class Election implements Serializable {
-    private int id;
-    private String title;
-    private String description;
-    private String dateOpen;
-    private String dateClosed;
-    private List<Candidate> candidates;
+import static com.election.hacking.ServiceConstants.KEY_ELECTION_DATE_CLOSED;
+import static com.election.hacking.ServiceConstants.KEY_ELECTION_DATE_OPEN;
+import static com.election.hacking.ServiceConstants.KEY_ELECTION_DESCRIPTION;
+import static com.election.hacking.ServiceConstants.KEY_ELECTION_ID;
+import static com.election.hacking.ServiceConstants.KEY_ELECTION_IS_OPEN;
+import static com.election.hacking.ServiceConstants.KEY_ELECTION_TITLE;
+import static com.election.hacking.ServiceConstants.KEY_POLITICIANS;
+import static com.election.hacking.ServiceConstants.parseDate;
 
-    public Election(int id, String title, String description, String dateOpen, String dateClosed, List<Candidate> candidates) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.dateOpen = dateOpen;
-        this.dateClosed = dateClosed;
-        this.candidates = candidates;
+public class Election implements Serializable {
+
+    @SerializedName(KEY_ELECTION_ID)
+    private int mElectionId;
+
+    @SerializedName(KEY_POLITICIANS)
+    private List<Politician> mPoliticians;
+
+    @SerializedName(KEY_ELECTION_TITLE)
+    private String mTitle;
+
+    @SerializedName(KEY_ELECTION_DESCRIPTION)
+    private String mDescription;
+
+    @SerializedName(KEY_ELECTION_DATE_OPEN)
+    private String mDateOpen;
+
+    @SerializedName(KEY_ELECTION_DATE_CLOSED)
+    private String mDateClosed;
+
+    @SerializedName(KEY_ELECTION_IS_OPEN)
+    private boolean mIsOpen;
+
+    public int getElectionId() {
+        return mElectionId;
     }
 
-    public int getId() {
-        return id;
+    public List<Politician> getPoliticians() {
+        return mPoliticians;
     }
 
     public String getTitle() {
-        return title;
+        return mTitle;
     }
 
     public String getDescription() {
-        return description;
+        return mDescription;
     }
 
-    public String getDateOpen() {
-        return dateOpen;
+    public Date getDateOpen() {
+        return parseDate(mDateOpen);
     }
 
-    public String getDateClosed() {
-        return dateClosed;
+    public Date getDateClosed() {
+        return parseDate(mDateClosed);
     }
 
-    public List<Candidate> getCandidates() {
-        return candidates;
+    public boolean getIsOpen() {
+        return mIsOpen;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("mElectionId", mElectionId)
+                .append("mPoliticians", mPoliticians)
+                .append("mTitle", mTitle)
+                .append("mDescription", mDescription)
+                .append("mDateOpen", mDateOpen)
+                .append("mDateClosed", mDateClosed)
+                .append("mIsOpen", mIsOpen)
+                .toString();
     }
 }

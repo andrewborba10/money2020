@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="@dimen/header_padding_vertical"
+        android:paddingBottom="@dimen/header_padding_vertical"
+        android:paddingLeft="@dimen/header_padding_horizontal"
+        android:paddingRight="@dimen/header_padding_horizontal"
+        android:background="@drawable/background_border"
+        android:gravity="center"
+        android:textAllCaps="true"
+        android:textStyle="italic"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        android:text="@string/app_name" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"
+        android:textColor="@android:color/white"
+        android:textStyle="italic"
+        android:text="@string/copyright_message"/>
+
+</LinearLayout>
