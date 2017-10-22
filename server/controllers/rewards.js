@@ -1,5 +1,6 @@
 var database = require('./database.js');
-var db = database.getRewardsDb()
+var db = database.getRewardsDb();
+var usersDb = database.getUsersDb();
 
 function hasCachedRewards(userId) {
 	return db.has(function (item) {
@@ -21,6 +22,11 @@ function cacheRewards(userId, rewardsResponse) {
 function deductRewards(userId, amountDeducted) {
 	rewards = db.findByProperty(userId);
 	rewards['rewards']['balance'] = rewards['rewards']['balance'] - amountDeducted;
+
+	user = usersDb.findByProperty('userId', userId);
+	user['totalDonations'] = user['totalDonations'] + amountDeducted;
+
+
 	console.log(rewards);
 }
 

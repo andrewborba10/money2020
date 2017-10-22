@@ -1,8 +1,8 @@
 var database = require('./database.js');
-var db = database.getElectionsDb()
+var db = database.getElectionsDb();
 
 function getElection(electionId) {
-	return db.findByProperty('electionId', 1);
+	return db.findByProperty('electionId', electionId);
 }
 
 function getElections() {

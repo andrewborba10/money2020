@@ -1,6 +1,6 @@
 var database = require('./database.js');
 var db = database.getOrganizationsDb();
-var userDb = database.getUsersDb();
+var usersDb = database.getUsersDb();
 
 function getRelatedOrganizations(votedPersonId) {
 	return db.findAll(function(item) {
@@ -15,20 +15,22 @@ function getOrganization(organizationId) {
 function pledgeOrganization(userId, organizationId) {
 	organization = getOrganization(organizationId);
 
-	if (userDb.has(function(item) {
+	if (usersDb.has(function(item) {
 		return item['userId'] == userId
 	})) {
-		pledgedOrganization = userDb.findByProperty('userId', userId);
-		pledgedOrganization['organization'] = organization;
-		return organization;
+		pledgedOrganization = usersDb.findByProperty('userId', userId);
+		pledgedOrganization['pledgedOrganization'] = organization;
+		return pledgedOrganization;
 	}
 
-	userDb.add({
+	pledgedOrganization = {
 		'userId' : userId,
-		'organization' : organization
-	});
+		'pledgedOrganization' : organization,
+		'totalDonations' : 0
+	};
 
-	return organization;
+	usersDb.add(pledgedOrganization);
+	return pledgedOrganization;
 }
 
 function getOrganizations() {
