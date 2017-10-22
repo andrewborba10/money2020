@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ElectionHacking</string>
+    <string name="copyright_message">©2017 ElectionHacking team. All rights reserved.</string>
 </resources>
