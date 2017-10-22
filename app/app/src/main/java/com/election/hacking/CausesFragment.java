@@ -1,6 +1,7 @@
 package com.election.hacking;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -78,6 +79,11 @@ public class CausesFragment extends Fragment {
         if (requestCode != REQUEST_CODE) {
             return;
         }
+
+        if (resultCode != Activity.RESULT_OK) {
+            return;
+        }
+
         setupSelectedCause((Organization) data.getSerializableExtra(KEY_ORGANIZATION));
     }
 

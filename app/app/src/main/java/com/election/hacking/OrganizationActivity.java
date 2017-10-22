@@ -1,5 +1,6 @@
 package com.election.hacking;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -7,12 +8,13 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.view.MenuItem;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.election.hacking.model.Organization;
 import com.election.hacking.model.PledgeResponse;
@@ -20,7 +22,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import static com.election.hacking.CausesFragment.REQUEST_CODE;
 import static com.election.hacking.ServiceConstants.TOKEN;
 
 public class OrganizationActivity extends AppCompatActivity {
@@ -82,8 +83,15 @@ public class OrganizationActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(final PledgeResponse result) {
                                 final Intent intent = new Intent();
-                                intent.putExtra(CausesFragment.KEY_ORGANIZATION, result.getOrganization());
-                                setResult(REQUEST_CODE, intent);
+                                final Organization pledgedOrganization = result.getOrganization();
+                                intent.putExtra(CausesFragment.KEY_ORGANIZATION, pledgedOrganization);
+                                setResult(Activity.RESULT_OK, intent);
+                                Toast
+                                        .makeText(
+                                                OrganizationActivity.this,
+                                                "Pledged your cash back rewards to " + pledgedOrganization.getOrganizationTitle(),
+                                                Toast.LENGTH_LONG)
+                                        .show();
                                 finish();
                             }
 
