@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.election.hacking.model.Election;
 import com.election.hacking.model.Politician;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -74,6 +75,10 @@ public class ElectionAdapter extends BaseAdapter {
                 ImageView candidateImage = (ImageView) candidateView.findViewById(R.id.candidateImage);
 
                 candidateImage.setBackgroundResource(ElectionUtil.getDrawableForCandidateParty(candidate));
+
+                final String candidateImageUrl = candidate.getImageUrl();
+                Picasso.with(context).load(candidateImageUrl).into(candidateImage);
+
                 candidateName.setText(candidate.getName());
                 candidateParty.setText(candidate.getParty());
                 holder.candidateListLayout.addView(candidateView);

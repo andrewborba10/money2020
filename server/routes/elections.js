@@ -2,9 +2,9 @@ var express = require('express');
 var elections = require('../controllers/elections.js');
 var router = express.Router();
 
-router.get('/:electionId', function(req, res, next) {
-	var electionId = req.params.electionId;
-	var election = elections.getElection(electionId);
+router.get('/:token', function(req, res, next) {
+	var userId = req.params.token;
+	var election = elections.getElectionForUser(userId);
 
 	res.json(election);
 });

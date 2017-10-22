@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/container_margin"
+        android:paddingRight="@dimen/container_margin"
+        android:paddingBottom="@dimen/container_margin">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:titleTextColor="@android:color/white"
+            app:theme="@style/ToolbarColoredBackArrow" />
+
+        <FrameLayout
+            android:id="@+id/organizationImageContainer"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_gravity="center_horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_heart_white" />
+
+            <ImageView
+                android:id="@+id/organizationImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitCenter" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/organizationName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            android:text="Organization Name" />
+
+        <TextView
+            android:id="@+id/organizationDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:gravity="center_horizontal"
+            android:textStyle="italic"
+            android:textSize="12sp"
+            android:textColor="@android:color/white"
+            android:text="This is an organization description." />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/card_padding_vertical"
+            android:background="@color/divider_transparent_white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:text="Global Donations To Date" />
+
+            <TextView
+                android:id="@+id/totalDonationsToDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textColor="@android:color/white"
+                android:textSize="30sp"
+                android:text="$0.00" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider_transparent_white" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center_horizontal"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:text="Tags" />
+
+        <TextView
+            android:id="@+id/organizationTags"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textColor="@android:color/white"
+            android:textStyle="italic"
+            android:text="@string/no_tags_available" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:layout_alignParentBottom="true"
+        android:background="@color/green">
+
+        <TextView
+            android:id="@+id/selectCauseButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingLeft="@dimen/container_margin"
+            android:paddingRight="@dimen/container_margin"
+            android:background="?attr/selectableItemBackground"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:clickable="true"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@android:color/white"
+            android:text="Select Cause" />
+
+    </FrameLayout>
+
+</RelativeLayout>

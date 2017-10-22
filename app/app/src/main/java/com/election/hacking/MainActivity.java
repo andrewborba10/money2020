@@ -1,5 +1,7 @@
 package com.election.hacking;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,13 +18,27 @@ import android.widget.TextView;
 
 import com.election.hacking.model.GetElectionsResponse;
 import com.election.hacking.model.GetOrganizationsResponse;
+import com.election.hacking.model.Organization;
+
+import java.util.List;
+
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK;
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+
     private ElectionAdapter electionAdapter;
+    private OrganizationAdapter organizationAdapter;
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
+
+    public static void start(final Context context) {
+        final Intent intent = new Intent(context, MainActivity.class);
+        intent.addFlags(FLAG_ACTIVITY_CLEAR_TASK | FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -32,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         TextView electionsButton = (TextView) findViewById(R.id.electionsButton);
-        TextView causesButton = (TextView) findViewById(R.id.causesButton);
         TextView aboutButton = (TextView) findViewById(R.id.aboutButton);
 
         setSupportActionBar(toolbar);
@@ -60,15 +75,15 @@ public class MainActivity extends AppCompatActivity {
 
         ServiceClient
                 .getInstance()
-                .getOrganizations(1, new ServiceClient.Callback<GetOrganizationsResponse>() {
+                .getOrganizations(new ServiceClient.Callback<GetOrganizationsResponse>() {
                     @Override
                     public void onSuccess(final GetOrganizationsResponse result) {
-                        Log.d("BORBA", "organizations " + result.getOrganizations());
+                        configureCauses(result.getOrganizations());
                     }
 
                     @Override
                     public void onError(final Exception e) {
-                        Log.e(TAG, "Failed to load election data");
+
                     }
                 });
 
@@ -78,16 +93,21 @@ public class MainActivity extends AppCompatActivity {
                 setActiveFragment(new ElectionsFragment(), ElectionsFragment.FRAGMENT_TAG);
             }
         });
-        causesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setActiveFragment(new CausesFragment(), CausesFragment.FRAGMENT_TAG);
-            }
-        });
         aboutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setActiveFragment(new AboutFragment(), AboutFragment.FRAGMENT_TAG);
+            }
+        });
+    }
+
+    private void configureCauses(final List<Organization> organizations) {
+        organizationAdapter = new OrganizationAdapter(this, organizations);
+        final TextView causesButton = (TextView) findViewById(R.id.causesButton);
+        causesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                setActiveFragment(new CausesFragment(), CausesFragment.FRAGMENT_TAG);
             }
         });
     }
@@ -123,5 +143,9 @@ public class MainActivity extends AppCompatActivity {
 
     public ElectionAdapter getElectionAdapter() {
         return electionAdapter;
+    }
+
+    public OrganizationAdapter getOrganizationAdapter() {
+        return organizationAdapter;
     }
 }

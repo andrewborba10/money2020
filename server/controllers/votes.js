@@ -1,23 +1,32 @@
 var database = require('./database.js');
 var elections = require('./elections.js');
-var db = database.getVotesDb()
+var db = database.getVotesDb();
+var userVotesDb = database.getUserVotesDb();
 
-function getVote(electionId, votedPersonId) {
+function getVote(electionId, politicianId) {
 	return db.find(function(item) {
-		return item['electionId'] == electionId && item['votedPersonId'] == votedPersonId;
+		return item['electionId'] == electionId && item['politicianId'] == politicianId;
 	});
 }
 
-function submitVote(electionId, votedPersonId) {
-	if (getVote(electionId, votedPersonId) == null) {
+function submitVote(userId, electionId, politicianId) {
+	if (getVote(electionId, politicianId) == null) {
 		db.add({
 			'electionId' : electionId,
-			'votedPersonId' : votedPersonId, 
+			'politicianId' : politicianId, 
 			'votes' : 0
 		});
 	}
 
-	getVote(electionId, votedPersonId)['votes'] = getVote(electionId, votedPersonId)['votes'] + 1;
+	// Update vote count
+	getVote(electionId, politicianId)['votes'] = getVote(electionId, politicianId)['votes'] + 1;
+
+	// Track who user voted for
+	userVotesDb.add({
+		'userId' : userId,
+		'electionId' : electionId,
+		'politicianId' : politicianId
+	});
 }
 
 function getElectionResults(electionId) {
@@ -31,48 +40,12 @@ function getElectionResults(electionId) {
 		vote = votes[idx];
 
 		results.push({
-			'personId' : vote['votedPersonId'],
+			'personId' : vote['politicianId'],
 			'votes' : vote['votes']
 		});
 	}
 
 	return results;
-	// candidates = {};
-
-	// for (var idx in votes) {
-	// 	var vote = votes[idx];
-
-	// 	if (!(vote['votedPersonId'] in candidates)) {
-	// 		candidates[vote['votedPersonId']] = 0;
-	// 	}
-
-	// 	candidates[vote['votedPersonId']] = candidates[vote['votedPersonId']] + 1;
-	// }
-
-	// politicians = elections.getElection(electionId)['politicians'];
-
-	// console.log(candidates);
-	// console.log(politicians);
-
-	// results = [];
-
-	// for (idx in politicians) {
-	// 	politicianId = politicians[idx]['personId'];
-	// 	console.log(politicianId);
-	// 	if (politicianId in candidates) {
-	// 		results.push({
-	// 			"personId" : politicianId,
-	// 			"votes" : candidates[politicianId]
-	// 		})
-	// 	} else {
-	// 		results.push({
-	// 			"personId" : politicianId,
-	// 			"votes" : 0
-	// 		});
-	// 	}
-	// }
-
-	// return results;
 }
 
 module.exports = {

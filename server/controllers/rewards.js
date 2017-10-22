@@ -1,5 +1,6 @@
 var database = require('./database.js');
-var db = database.getRewardsDb()
+var db = database.getRewardsDb();
+var usersDb = database.getUsersDb();
 
 function hasCachedRewards(userId) {
 	return db.has(function (item) {
@@ -15,12 +16,19 @@ function cacheRewards(userId, rewardsResponse) {
 	db.add({
 		'userId' : userId,
 		'rewards' : rewardsResponse
-	})
+	});
 }
 
 function deductRewards(userId, amountDeducted) {
 	rewards = db.findByProperty(userId);
 	rewards['rewards']['balance'] = rewards['rewards']['balance'] - amountDeducted;
+
+	user = usersDb.findByProperty('userId', userId);
+	user['totalDonations'] = user['totalDonations'] + amountDeducted;
+
+	// TODO: theoretically would update organization for total donations,
+	// but our organization supports strings and in millions of dollars...
+
 	console.log(rewards);
 }
 
