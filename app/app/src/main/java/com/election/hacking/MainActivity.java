@@ -1,5 +1,7 @@
 package com.election.hacking;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,7 +17,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.election.hacking.model.GetElectionsResponse;
-import com.election.hacking.model.GetOrganizationsResponse;
+
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK;
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -23,6 +27,12 @@ public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
+
+    public static void start(final Context context) {
+        final Intent intent = new Intent(context, MainActivity.class);
+        intent.addFlags(FLAG_ACTIVITY_CLEAR_TASK | FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -50,20 +60,6 @@ public class MainActivity extends AppCompatActivity {
                     public void onSuccess(final GetElectionsResponse result) {
                         electionAdapter = new ElectionAdapter(MainActivity.this, result.getElections());
                         setActiveFragment(new ElectionsFragment(), ElectionsFragment.FRAGMENT_TAG);
-                    }
-
-                    @Override
-                    public void onError(final Exception e) {
-                        Log.e(TAG, "Failed to load election data");
-                    }
-                });
-
-        ServiceClient
-                .getInstance()
-                .getOrganizations(1, new ServiceClient.Callback<GetOrganizationsResponse>() {
-                    @Override
-                    public void onSuccess(final GetOrganizationsResponse result) {
-                        Log.d("BORBA", "organizations " + result.getOrganizations());
                     }
 
                     @Override
