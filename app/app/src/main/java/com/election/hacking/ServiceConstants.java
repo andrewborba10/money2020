@@ -29,6 +29,9 @@ public class ServiceConstants {
     // Pledge API
     public static final String KEY_ORGANIZATION = "organization";
 
+    // Rewards API
+    public static final String KEY_BALANCE = "balance";
+
     // Developer
     public static final String KEY_DEVELOPER_ID = "politicianId";
     public static final String KEY_DEVELOPER_NAME = "name";

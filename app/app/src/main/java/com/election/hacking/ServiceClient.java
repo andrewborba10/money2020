@@ -9,6 +9,7 @@ import android.util.Log;
 import com.election.hacking.model.GetButtonResponse;
 import com.election.hacking.model.GetElectionsResponse;
 import com.election.hacking.model.GetOrganizationsResponse;
+import com.election.hacking.model.GetRewardsResponse;
 import com.election.hacking.model.GetUserInformationResponse;
 import com.election.hacking.model.GetVoteResponse;
 import com.election.hacking.model.IdentityVerificationRequest;
@@ -147,6 +148,17 @@ public class ServiceClient {
                 .ensureSuccess();
 
         new ServiceCallTask<>(urlRequest, GetVoteResponse.class, callback)
+                .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    public void getRewards(final String userToken,
+                           final Callback<GetRewardsResponse> callback) {
+        final Request urlRequest = UrlClient
+                .create()
+                .get("http://10.101.1.208:3000/rewards/" + userToken)
+                .ensureSuccess();
+
+        new ServiceCallTask<>(urlRequest, GetRewardsResponse.class, callback)
                 .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
