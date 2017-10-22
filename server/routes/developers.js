@@ -3,7 +3,7 @@ var developers = require('../controllers/developers.js');
 var router = express.Router();
 
 router.get('/', function(req, res, next) {
-	res.json({'developers': developers.getDevelopers()});
+	res.json(developers.getDevelopers());
 });
 
 module.exports = router;
