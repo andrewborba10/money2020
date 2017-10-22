@@ -24,6 +24,6 @@ function authenticate() {
   });
 }
 
-// authenticate();
+authenticate();
 
 module.exports = {authenticate: authenticate};
