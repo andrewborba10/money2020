@@ -53,4 +53,5 @@ public class ServiceConstants {
     public static final String KEY_ORGANIZATION_DESCRIPTION = "description";
     public static final String KEY_ORGANIZATION_TOTAL_DONATIONS = "totalDonations";
     public static final String KEY_ORGANIZATION_IMAGE_URL = "imageUrl";
+    public static final String KEY_ORGANIZATION_TAGS = "tags";
 }

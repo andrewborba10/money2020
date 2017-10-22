@@ -5,12 +5,12 @@ import com.google.gson.annotations.SerializedName;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.List;
 
 import static com.election.hacking.ServiceConstants.KEY_ORGANIZATION_DESCRIPTION;
 import static com.election.hacking.ServiceConstants.KEY_ORGANIZATION_ID;
 import static com.election.hacking.ServiceConstants.KEY_ORGANIZATION_IMAGE_URL;
+import static com.election.hacking.ServiceConstants.KEY_ORGANIZATION_TAGS;
 import static com.election.hacking.ServiceConstants.KEY_ORGANIZATION_TITLE;
 import static com.election.hacking.ServiceConstants.KEY_ORGANIZATION_TOTAL_DONATIONS;
 
@@ -30,6 +30,9 @@ public class Organization implements Serializable {
 
     @SerializedName(KEY_ORGANIZATION_IMAGE_URL)
     private String mOrganizationImageUrl;
+
+    @SerializedName(KEY_ORGANIZATION_TAGS)
+    private List<String> mOrganizationTags;
 
     public String getOrganizationId() {
         return mOrganizationId;
@@ -52,7 +55,7 @@ public class Organization implements Serializable {
     }
 
     public List<String> getOrganizationTags() {
-        return Arrays.asList("guns", "nra", "health");
+        return mOrganizationTags;
     }
 
     @Override
@@ -63,6 +66,7 @@ public class Organization implements Serializable {
                 .append("mOrganizationDescription", mOrganizationDescription)
                 .append("mOrganizationTotalDonations", mOrganizationTotalDonations)
                 .append("mOrganizationImageUrl", mOrganizationImageUrl)
+                .append("mOrganizationTags", mOrganizationTags)
                 .toString();
     }
 }

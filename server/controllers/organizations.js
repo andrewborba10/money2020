@@ -29,7 +29,9 @@ function pledgeOrganization(userId, organizationId) {
 		'totalDonations' : 0
 	};
 
-	usersDb.add(pledgedOrganization);
+	user = usersDb.findByProperty('userId', userId);
+	user['pledgedOrganization'] = organization;
+
 	return pledgedOrganization;
 }
 
