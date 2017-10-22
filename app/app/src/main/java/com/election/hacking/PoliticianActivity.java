@@ -77,6 +77,7 @@ public class PoliticianActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 VotingKeyValueStore.getInstance().vote(
+                        PoliticianActivity.this,
                         ServiceConstants.TOKEN,
                         electionId,
                         politician.getPoliticianId()
