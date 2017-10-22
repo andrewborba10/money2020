@@ -9,11 +9,15 @@ function getRelatedOrganizations(politicianId) {
 }
 
 function getOrganization(organizationId) {
-	return db.findByProperty('organizationId', organizationId);
+	return db.findByProperty('organizationId', parseInt(organizationId, 10));
 }
 
 function pledgeOrganization(userId, organizationId) {
+	console.log(organizationId);
 	organization = getOrganization(organizationId);
+	// console.log(db.items);
+	console.log(organizationId);
+	console.log(organization);
 
 	if (usersDb.has(function(item) {
 		return item['userId'] == userId

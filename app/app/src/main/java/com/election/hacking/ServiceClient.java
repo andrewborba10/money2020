@@ -11,6 +11,7 @@ import com.election.hacking.model.GetOrganizationsResponse;
 import com.election.hacking.model.GetUserInformationResponse;
 import com.election.hacking.model.IdentityVerificationRequest;
 import com.election.hacking.model.IdentityVerificationResponse;
+import com.election.hacking.model.PledgeResponse;
 import com.google.gson.Gson;
 import com.url.utils.Request;
 import com.url.utils.Response;
@@ -124,7 +125,7 @@ public class ServiceClient {
 
     public void pledge(final String userToken,
                        final int organizationId,
-                       final Callback<Void> callback) {
+                       final Callback<PledgeResponse> callback) {
         final Request urlRequest = UrlClient
                 .create()
                 .post("http://10.101.1.208:3000/organizations/pledge")
@@ -132,7 +133,7 @@ public class ServiceClient {
                 .param(KEY_ORGANIZATION_ID, organizationId)
                 .ensureSuccess();
 
-        new ServiceCallTask<>(urlRequest, Void.class, callback)
+        new ServiceCallTask<>(urlRequest, PledgeResponse.class, callback)
                 .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
