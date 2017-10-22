@@ -5,9 +5,11 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.election.hacking.model.Organization;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -20,6 +22,7 @@ public class OrganizationActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_organization);
 
+        ImageView organizationImage = (ImageView) findViewById(R.id.organizationImage);
         TextView organizationName = (TextView) findViewById(R.id.organizationName);
         TextView organizationDescription = (TextView) findViewById(R.id.organizationDescription);
         TextView totalDonationsToDate = (TextView) findViewById(R.id.totalDonationsToDate);
@@ -28,6 +31,13 @@ public class OrganizationActivity extends AppCompatActivity {
 
         Organization organization = (Organization) getIntent().getSerializableExtra(KEY_ORGANIZATION);
         if (organization != null) {
+            if (organizationImage != null) {
+                Picasso
+                        .with(this)
+                        .load(organization.getOrganizationImageUrl())
+                        .into(organizationImage);
+            }
+
             organizationName.setText(organization.getOrganizationTitle());
             organizationDescription.setText(organization.getOrganizationDescription());
             totalDonationsToDate.setText(organization.getTotalDonations());
