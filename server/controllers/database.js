@@ -210,7 +210,7 @@ var organizationsDb = new Database([
 		"relatedPoliticianIds" : [0, 3, 6, 9, 12],
 		"totalDonations" : "$7.1m",
 		"imageUrl" : "http://www.clintonfoundation.org/sites/all/themes/custom/cf/cf-logo-big.png",
-		"tags" : ["Universal Health Control", "Climate Control", "Disaster Relief"]
+		"tags" : ["Universal Health Care", "Climate Control", "Disaster Relief"]
 	},
 	{
 		"organizationId" : 2,
@@ -254,7 +254,7 @@ var organizationsDb = new Database([
 		"description" : "The mission of The Heritage Foundation is to formulate and promote conservative public policies based on the principles of free enterprise, limited government, individual freedom, traditional American values, and a strong national defense.",
 		"relatedPoliticianIds" : [1, 4, 7, 10, 13],
 		"totalDonations" : "$5.2m",
-		"imageUrl" : "http://dailysignal.com/wp-content/themes/daily-signal/assets/images/brand/the-heritage-foundation-logo-blue.png",
+		"imageUrl" : "https://www.mediaite.com/wp-content/uploads/2017/08/heritage-foundation-logo.jpeg",
 		"tags" : ["Free Enterprise", "Limited Government", "National Defense"]		
 	},
 	{
@@ -263,7 +263,7 @@ var organizationsDb = new Database([
 		"description" : "Founded in 1968, National Right to Life is the nation's oldest and largest pro-life organization. National Right to Life is the federation of 50 state right-to-life affiliates and more than 3,000 local chapters. Through education and legislation, National Right to Life is working to restore legal protection to the most defenseless members of our society who are threatened by abortion, infanticide, assisted suicide and euthanasia.",
 		"relatedPoliticianIds" : [1, 4, 7, 10, 13],
 		"totalDonations" : "$2.4m",
-		"imageUrl" : "http://files.rightwingwatch.org/uploads/national-right-to-life-committee-logo-3-400x116.png",
+		"imageUrl" : "https://nrlcomm.files.wordpress.com/2012/02/1-nrlc-logo-best.jpg",
 		"tags" : ["Pro-Life", "Anti-Euthanasia", "Legal Protections"]
 	}
 ]);
