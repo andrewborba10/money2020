@@ -6,6 +6,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.io.Serializable;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -52,8 +53,12 @@ public class IdentityVerificationRequest implements Serializable {
             return this;
         }
 
-        public Builder withDateOfBirth(final Date date) {
-            mDateOfBirth = date;
+        public Builder withDateOfBirth(final String date) {
+            try {
+                mDateOfBirth = DATE_FORMAT.parse(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
             return this;
         }
 
