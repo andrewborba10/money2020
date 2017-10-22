@@ -1,21 +1,9 @@
 package com.election.hacking;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 public class ServiceConstants {
 
-    private static final DateFormat DATE_FORMAT = new SimpleDateFormat("mm/dd/yyyy", Locale.US);
-    public static Date parseDate(final String date) {
-        try {
-            return DATE_FORMAT.parse(date);
-        } catch (final ParseException e) {
-            throw new RuntimeException("Failed to deserialize time: " + date, e);
-        }
-    }
+    // Token
+    public static final String TOKEN = "Nate";
 
     // Verify API
     public static final String KEY_SSN = "ssn";
@@ -31,6 +19,9 @@ public class ServiceConstants {
 
     // Organizations API
     public static final String KEY_ORGANIZATIONS = "organizations";
+
+    // Get User Information API
+    public static final String KEY_USER = "user";
 
     // Politician
     public static final String KEY_POLITICIAN_ID = "personId";
@@ -53,4 +44,8 @@ public class ServiceConstants {
     public static final String KEY_ORGANIZATION_DESCRIPTION = "description";
     public static final String KEY_ORGANIZATION_TOTAL_DONATIONS = "totalDonations";
     public static final String KEY_ORGANIZATION_IMAGE_URL = "imageUrl";
+
+    // User
+    public static final String KEY_USER_PLEDGED_ORGANIZATION = "pledgedOrganization";
+    public static final String KEY_USER_TOTAL_DONATED = "totalDonations";
 }
