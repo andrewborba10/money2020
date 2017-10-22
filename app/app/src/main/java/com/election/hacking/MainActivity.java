@@ -9,14 +9,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
     private ElectionAdapter electionAdapter;
 
     private DrawerLayout drawerLayout;
@@ -41,15 +40,20 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        List<Candidate> candidates = new ArrayList<>();
-        candidates.add(new Candidate(1, "person 1", "democratic"));
-        candidates.add(new Candidate(1, "person 2", "republican"));
+        ServiceClient
+                .getInstance()
+                .getElections(new ServiceClient.Callback<GetElectionsResponse>() {
+                    @Override
+                    public void onSuccess(final GetElectionsResponse result) {
+                        electionAdapter = new ElectionAdapter(MainActivity.this, result.getElections());
+                        setActiveFragment(new ElectionsFragment(), ElectionsFragment.FRAGMENT_TAG);
+                    }
 
-        List<Election> elections = new ArrayList<>();
-        elections.add(new Election(0, "title1", "description", "10/10/1010", "02/02/2020", candidates));
-        elections.add(new Election(0, "title1", "description", "10/10/1010", "02/02/2020", candidates));
-
-        electionAdapter = new ElectionAdapter(this, elections);
+                    @Override
+                    public void onError(final Exception e) {
+                        Log.e(TAG, "Failed to load election data");
+                    }
+                });
 
         electionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,8 +73,6 @@ public class MainActivity extends AppCompatActivity {
                 setActiveFragment(new AboutFragment(), AboutFragment.FRAGMENT_TAG);
             }
         });
-
-        setActiveFragment(new ElectionsFragment(), ElectionsFragment.FRAGMENT_TAG);
     }
 
     @Override

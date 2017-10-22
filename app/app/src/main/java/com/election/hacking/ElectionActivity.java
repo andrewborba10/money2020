@@ -40,10 +40,10 @@ public class ElectionActivity extends AppCompatActivity {
             electionEndDate.setText(election.getDateClosed());
             candidateListLayout.removeAllViews();
 
-            List<Candidate> candidates = election.getCandidates();
+            List<Politician> candidates = election.getPoliticians();
             if (candidates != null) {
                 for (int i = 0; i < candidates.size(); i++){
-                    Candidate candidate = candidates.get(i);
+                    Politician candidate = candidates.get(i);
                     View candidateView = LayoutInflater.from(this).inflate(R.layout.item_election_candidate_no_bg, null);
                     TextView candidateName = (TextView) candidateView.findViewById(R.id.candidateName);
                     TextView candidateParty = (TextView) candidateView.findViewById(R.id.candidateParty);
