@@ -1,6 +1,7 @@
 package com.election.hacking;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.election.hacking.model.Organization;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -57,16 +59,30 @@ public class OrganizationAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        // TODO organization image
-        holder.organizationName.setText(organizations.get(position).getOrganizationTitle());
-        holder.organizationDescription.setText(organizations.get(position).getOrganizationDescription());
+        final Organization organization = organizations.get(position);
+        if (holder.organizationImage != null) {
+            setImageContainerColor(R.color.white, convertView);
+            Picasso
+                    .with(context)
+                    .load(organization.getOrganizationImageUrl())
+                    .into(holder.organizationImage);
+        } else {
+            setImageContainerColor(R.color.gray, convertView);
+        }
+        holder.organizationName.setText(organization.getOrganizationTitle());
+        holder.organizationDescription.setText(organization.getOrganizationDescription());
 
-        OrganizationTagAdapter tagAdapter = new OrganizationTagAdapter(context, organizations.get(position).getOrganizationTags());
+        OrganizationTagAdapter tagAdapter = new OrganizationTagAdapter(context, organization.getOrganizationTags());
         LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
         holder.tagsRecycler.setLayoutManager(layoutManager);
         holder.tagsRecycler.setAdapter(tagAdapter);
 
         return convertView;
+    }
+
+    private void setImageContainerColor(final int color, final View view) {
+        final int colorRes = ContextCompat.getColor(context, color);
+        view.findViewById(R.id.organizationImageContainer).setBackgroundColor(colorRes);
     }
 
     private class ViewHolder {
