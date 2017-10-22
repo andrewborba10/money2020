@@ -20,7 +20,7 @@
                 android:id="@+id/organizationImageContainer"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
-                android:background="#ccc">
+                android:background="@color/gray">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -32,7 +32,7 @@
                     android:id="@+id/organizationImage"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="centerCrop" />
+                    android:scaleType="fitCenter" />
 
             </FrameLayout>
 

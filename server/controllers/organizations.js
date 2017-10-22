@@ -2,9 +2,9 @@ var database = require('./database.js');
 var db = database.getOrganizationsDb();
 var usersDb = database.getUsersDb();
 
-function getRelatedOrganizations(votedPersonId) {
+function getRelatedOrganizations(politicianId) {
 	return db.findAll(function(item) {
-		return item['relatedPersonIds'].indexOf(parseInt(votedPersonId, 10)) !== -1;
+		return item['relatedPersonIds'].indexOf(parseInt(politicianId, 10)) !== -1;
 	});
 }
 
