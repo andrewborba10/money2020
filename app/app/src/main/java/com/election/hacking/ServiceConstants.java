@@ -24,6 +24,7 @@ public class ServiceConstants {
     public static final String KEY_USER = "user";
 
     // Votes API
+    public static final String KEY_VOTES = "votes";
 
     // Politician
     public static final String KEY_POLITICIAN_ID = "politicianId";
@@ -51,4 +52,9 @@ public class ServiceConstants {
     // User
     public static final String KEY_USER_PLEDGED_ORGANIZATION = "pledgedOrganization";
     public static final String KEY_USER_TOTAL_DONATED = "totalDonations";
+
+    // Vote
+    public static final String KEY_VOTE_USER_ID = "userId";
+    public static final String KEY_VOTE_ELECTION_ID = "electionId";
+    public static final String KEY_VOTE_POLITICIAN_ID = "politicianId";
 }

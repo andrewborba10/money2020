@@ -136,6 +136,18 @@ public class ServiceClient {
                 .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
+    public void getVotes(final String userToken,
+                         final Callback<Void> callback) {
+        final Request urlRequest = UrlClient
+                .create()
+                .get("http://10.101.1.208:3000/elections")
+                .param(KEY_TOKEN, userToken)
+                .ensureSuccess();
+
+        new ServiceCallTask<>(urlRequest, Void.class, callback)
+                .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
     private class ServiceCallTask<T> extends AsyncTask<Object, Void, T> {
 
         private final Request mRequest;

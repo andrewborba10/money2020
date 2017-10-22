@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 	res.json({'organizations': organizations.getOrganizations()});
 });
 
-router.post('/pledged', function(req, res, next) {
+router.post('/pledge', function(req, res, next) {
 	userId = req.body.token;
 	organizationId = req.body.organizationId;
 
