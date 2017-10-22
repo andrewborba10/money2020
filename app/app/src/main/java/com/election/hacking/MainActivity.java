@@ -55,6 +55,20 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
+        ServiceClient
+                .getInstance()
+                .getOrganizations(1, new ServiceClient.Callback<GetOrganizationsResponse>() {
+                    @Override
+                    public void onSuccess(final GetOrganizationsResponse result) {
+                        Log.d("BORBA", "organizations " + result.getOrganizations());
+                    }
+
+                    @Override
+                    public void onError(final Exception e) {
+                        Log.e(TAG, "Failed to load election data");
+                    }
+                });
+
         electionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
