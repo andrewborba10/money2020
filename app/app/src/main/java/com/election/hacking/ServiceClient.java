@@ -6,6 +6,7 @@ import android.support.annotation.MainThread;
 import com.election.hacking.model.GetButtonResponse;
 import com.election.hacking.model.GetElectionsResponse;
 import com.election.hacking.model.GetOrganizationsResponse;
+import com.election.hacking.model.GetUserInformationResponse;
 import com.election.hacking.model.IdentityVerificationRequest;
 import com.election.hacking.model.IdentityVerificationResponse;
 import com.google.gson.Gson;
@@ -84,6 +85,17 @@ public class ServiceClient {
                 .ensureSuccess();
 
         new ServiceCallTask<>(urlRequest, GetOrganizationsResponse.class, callback)
+                .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    public void getUserInformation(final String userToken,
+                                   final Callback<GetUserInformationResponse> callback) {
+        final Request urlRequest = UrlClient
+                .create()
+                .get("http://10.101.1.208:3000/users/" + userToken)
+                .ensureSuccess();
+
+        new ServiceCallTask<>(urlRequest, GetUserInformationResponse.class, callback)
                 .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 

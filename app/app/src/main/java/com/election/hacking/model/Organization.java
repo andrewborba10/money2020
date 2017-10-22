@@ -47,7 +47,7 @@ public class Organization implements Serializable {
     }
 
     public String getTotalDonations() {
-        return mOrganizationImageUrl;
+        return mOrganizationTotalDonations;
     }
 
     public String getOrganizationImageUrl() {

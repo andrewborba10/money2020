@@ -4,7 +4,7 @@ var usersDb = database.getUsersDb();
 
 function getRelatedOrganizations(politicianId) {
 	return db.findAll(function(item) {
-		return item['relatedPersonIds'].indexOf(parseInt(politicianId, 10)) !== -1;
+		return item['relatedPoliticianIds'].indexOf(parseInt(politicianId, 10)) !== -1;
 	});
 }
 
