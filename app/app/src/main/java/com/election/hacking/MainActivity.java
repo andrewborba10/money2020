@@ -16,10 +16,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.election.hacking.model.GetElectionsResponse;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.election.hacking.model.GetElectionsResponse;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK;
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
