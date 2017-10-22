@@ -9,6 +9,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.election.hacking.model.Election;
+import com.election.hacking.model.Politician;
+
 import java.util.List;
 
 public class ElectionAdapter extends BaseAdapter {
@@ -16,7 +19,7 @@ public class ElectionAdapter extends BaseAdapter {
     private Context context;
     private List<Election> elections;
 
-    public ElectionAdapter(Context context, List<Election> elections) {
+    public ElectionAdapter(final Context context, final List<Election> elections) {
         this.context = context;
         this.elections = elections;
     }
@@ -61,10 +64,10 @@ public class ElectionAdapter extends BaseAdapter {
         holder.electionEndDate.setText(elections.get(position).getDateClosed());
         holder.candidateListLayout.removeAllViews();
 
-        List<Candidate> candidates = elections.get(position).getCandidates();
+        List<Politician> candidates = elections.get(position).getPoliticians();
         if (candidates != null) {
             for (int i = 0; i < candidates.size(); i++){
-                Candidate candidate = candidates.get(i);
+                Politician candidate = candidates.get(i);
                 View candidateView = LayoutInflater.from(context).inflate(R.layout.item_election_candidate, null);
                 TextView candidateName = (TextView) candidateView.findViewById(R.id.candidateName);
                 TextView candidateParty = (TextView) candidateView.findViewById(R.id.candidateParty);

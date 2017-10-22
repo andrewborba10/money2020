@@ -2,11 +2,13 @@ package com.election.hacking;
 
 import android.support.annotation.DrawableRes;
 
+import com.election.hacking.model.Politician;
+
 public class ElectionUtil {
     @DrawableRes
-    public static int getDrawableForCandidateParty(Candidate candidate) {
+    public static int getDrawableForCandidateParty(final Politician politician) {
         int candidateDrawableId = R.drawable.ic_person_gray;
-        String party = candidate.getParty();
+        String party = politician.getParty();
         if (party != null) {
             if (party.toLowerCase().equals("democratic")) {
                 candidateDrawableId = R.drawable.ic_person_blue;
