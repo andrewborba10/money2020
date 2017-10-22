@@ -17,8 +17,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.election.hacking.model.GetElectionsResponse;
+import com.election.hacking.model.GetOrganizationsResponse;
+import com.election.hacking.model.Organization;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK;
@@ -47,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         TextView electionsButton = (TextView) findViewById(R.id.electionsButton);
-        TextView causesButton = (TextView) findViewById(R.id.causesButton);
         TextView aboutButton = (TextView) findViewById(R.id.aboutButton);
 
         setSupportActionBar(toolbar);
@@ -73,23 +73,19 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-        List<String> tags = new ArrayList<>();
-        tags.add("ASDF");
-        tags.add("ASDFA");
-        tags.add("ASDFD");
-        tags.add("ASDFF");
-        tags.add("ASDFW");
+        ServiceClient
+                .getInstance()
+                .getOrganizations(new ServiceClient.Callback<GetOrganizationsResponse>() {
+                    @Override
+                    public void onSuccess(final GetOrganizationsResponse result) {
+                        configureCauses(result.getOrganizations());
+                    }
 
-        List<Organization> organizations = new ArrayList<>();
-        organizations.add(new Organization(tags, "asdfasdf", "organization name", "this is a description", "$0.01", "$10.01"));
-        organizations.add(new Organization(tags, "asdfasdf", "organization name", "this is a description", "$0.01", "$10.01"));
-        organizations.add(new Organization(tags, "asdfasdf", "organization name", "this is a description", "$0.01", "$10.01"));
-        organizations.add(new Organization(tags, "asdfasdf", "organization name", "this is a description", "$0.01", "$10.01"));
-        organizations.add(new Organization(tags, "asdfasdf", "organization name", "this is a description", "$0.01", "$10.01"));
-        organizations.add(new Organization(tags, "asdfasdf", "organization name", "this is a description", "$0.01", "$10.01"));
-        organizations.add(new Organization(tags, "asdfasdf", "organization name", "this is a description", "$0.01", "$10.01"));
+                    @Override
+                    public void onError(final Exception e) {
 
-        organizationAdapter = new OrganizationAdapter(this, organizations);
+                    }
+                });
 
         electionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,16 +93,21 @@ public class MainActivity extends AppCompatActivity {
                 setActiveFragment(new ElectionsFragment(), ElectionsFragment.FRAGMENT_TAG);
             }
         });
-        causesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setActiveFragment(new CausesFragment(), CausesFragment.FRAGMENT_TAG);
-            }
-        });
         aboutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setActiveFragment(new AboutFragment(), AboutFragment.FRAGMENT_TAG);
+            }
+        });
+    }
+
+    private void configureCauses(final List<Organization> organizations) {
+        organizationAdapter = new OrganizationAdapter(this, organizations);
+        final TextView causesButton = (TextView) findViewById(R.id.causesButton);
+        causesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                setActiveFragment(new CausesFragment(), CausesFragment.FRAGMENT_TAG);
             }
         });
     }

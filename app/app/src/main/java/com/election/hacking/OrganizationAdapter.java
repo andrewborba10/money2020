@@ -10,6 +10,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.election.hacking.model.Organization;
+
 import java.util.List;
 
 public class OrganizationAdapter extends BaseAdapter {
@@ -56,20 +58,15 @@ public class OrganizationAdapter extends BaseAdapter {
         }
 
         // TODO organization image
-//        holder.organizationImage.setImageDrawable();
-        holder.organizationName.setText(organizations.get(position).getName());
-        holder.organizationDescription.setText(organizations.get(position).getDescription());
+        holder.organizationName.setText(organizations.get(position).getOrganizationTitle());
+        holder.organizationDescription.setText(organizations.get(position).getOrganizationDescription());
 
-        OrganizationTagAdapter tagAdapter = new OrganizationTagAdapter(context, organizations.get(position).getTags());
+        OrganizationTagAdapter tagAdapter = new OrganizationTagAdapter(context, organizations.get(position).getOrganizationTags());
         LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
         holder.tagsRecycler.setLayoutManager(layoutManager);
         holder.tagsRecycler.setAdapter(tagAdapter);
 
         return convertView;
-    }
-
-    public List<Organization> getOrganizations() {
-        return organizations;
     }
 
     private class ViewHolder {
