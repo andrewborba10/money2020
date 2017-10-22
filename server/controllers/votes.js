@@ -40,7 +40,7 @@ function getElectionResults(electionId) {
 		vote = votes[idx];
 
 		results.push({
-			'personId' : vote['politicianId'],
+			'politicianId' : vote['politicianId'],
 			'votes' : vote['votes']
 		});
 	}
