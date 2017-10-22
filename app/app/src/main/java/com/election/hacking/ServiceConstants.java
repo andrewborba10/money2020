@@ -36,6 +36,7 @@ public class ServiceConstants {
     public static final String KEY_POLITICIAN_ID = "personId";
     public static final String KEY_POLITICIAN_NAME = "name";
     public static final String KEY_POLITICIAN_PARTY = "party";
+    public static final String KEY_POLITICIAN_IMAGE_URL = "imageUrl";
 
     // Election
     public static final String KEY_ELECTION_ID = "electionId";
@@ -50,4 +51,6 @@ public class ServiceConstants {
     public static final String KEY_ORGANIZATION_ID = "organizationId";
     public static final String KEY_ORGANIZATION_TITLE = "title";
     public static final String KEY_ORGANIZATION_DESCRIPTION = "description";
+    public static final String KEY_ORGANIZATION_TOTAL_DONATIONS = "totalDonations";
+    public static final String KEY_ORGANIZATION_IMAGE_URL = "imageUrl";
 }

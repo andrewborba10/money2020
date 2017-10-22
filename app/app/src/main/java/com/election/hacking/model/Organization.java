@@ -8,7 +8,9 @@ import java.io.Serializable;
 
 import static com.election.hacking.ServiceConstants.KEY_ORGANIZATION_DESCRIPTION;
 import static com.election.hacking.ServiceConstants.KEY_ORGANIZATION_ID;
+import static com.election.hacking.ServiceConstants.KEY_ORGANIZATION_IMAGE_URL;
 import static com.election.hacking.ServiceConstants.KEY_ORGANIZATION_TITLE;
+import static com.election.hacking.ServiceConstants.KEY_ORGANIZATION_TOTAL_DONATIONS;
 
 public class Organization implements Serializable {
 
@@ -20,6 +22,12 @@ public class Organization implements Serializable {
 
     @SerializedName(KEY_ORGANIZATION_DESCRIPTION)
     private String mOrganizationDescription;
+
+    @SerializedName(KEY_ORGANIZATION_TOTAL_DONATIONS)
+    private String mOrganizationTotalDonations;
+
+    @SerializedName(KEY_ORGANIZATION_IMAGE_URL)
+    private String mOrganizationImageUrl;
 
     public String getOrganizationId() {
         return mOrganizationId;
@@ -33,12 +41,22 @@ public class Organization implements Serializable {
         return mOrganizationDescription;
     }
 
+    public String getTotalDonations() {
+        return mOrganizationImageUrl;
+    }
+
+    public String getOrganizationImageUrl() {
+        return mOrganizationImageUrl;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .append("mOrganizationId", mOrganizationId)
                 .append("mOrganizationTitle", mOrganizationTitle)
                 .append("mOrganizationDescription", mOrganizationDescription)
+                .append("mOrganizationTotalDonations", mOrganizationTotalDonations)
+                .append("mOrganizationImageUrl", mOrganizationImageUrl)
                 .toString();
     }
 }
