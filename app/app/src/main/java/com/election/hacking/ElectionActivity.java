@@ -37,7 +37,7 @@ public class ElectionActivity extends AppCompatActivity {
         TextView electionEndDate = (TextView) findViewById(R.id.electionEndDate);
         LinearLayout candidateListLayout = (LinearLayout) findViewById(R.id.candidateListLayout);
 
-        Election election = (Election) getIntent().getSerializableExtra(KEY_ELECTION);
+        final Election election = (Election) getIntent().getSerializableExtra(KEY_ELECTION);
         if (election != null) {
             electionTitle.setText(election.getTitle());
             electionDescription.setText(election.getDescription());
@@ -62,6 +62,7 @@ public class ElectionActivity extends AppCompatActivity {
                         public void onClick(View v) {
                             Intent intent = new Intent(ElectionActivity.this, PoliticianActivity.class);
                             intent.putExtra(PoliticianActivity.KEY_POLITICIAN, candidate);
+                            intent.putExtra(PoliticianActivity.KEY_ELECTION_ID, election.getElectionId());
                             startActivity(intent);
                         }
                     });
