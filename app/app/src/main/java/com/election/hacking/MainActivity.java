@@ -135,10 +135,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void setActiveFragment(Fragment fragment, String tag) {
         FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.fragmentContainer, fragment, tag);
-        ft.commit();
-        drawerLayout.closeDrawers();
+        Fragment foundFragment = getSupportFragmentManager().findFragmentByTag(tag);
+        if (foundFragment == null || !foundFragment.isVisible()) {
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.replace(R.id.fragmentContainer, fragment, tag);
+            ft.commit();
+            drawerLayout.closeDrawers();
+        }
     }
 
     public ElectionAdapter getElectionAdapter() {
