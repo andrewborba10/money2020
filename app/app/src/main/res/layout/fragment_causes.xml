@@ -2,30 +2,124 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/container_margin"
+    android:paddingLeft="@dimen/container_margin"
+    android:paddingRight="@dimen/container_margin">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:stretchColumns="*">
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:text="My Rewards Balance" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:text="My Donations To Date" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/rewardsBalance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:textColor="@android:color/white"
+                android:textSize="30sp"
+                android:text="$0.00" />
+
+            <TextView
+                android:id="@+id/myDonationsToDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:textColor="@android:color/white"
+                android:textSize="30sp"
+                android:text="$0.00" />
+
+        </TableRow>
+
+    </TableLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/container_margin"
+        android:background="@color/divider_transparent_white" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/container_margin"
-        android:layout_marginRight="@dimen/container_margin"
-        android:gravity="right"
-        android:textColor="@android:color/white"
+        android:layout_marginBottom="@dimen/container_margin"
         android:textStyle="bold"
-        android:text="Rewards Balance" />
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:text="My Selected Cause" />
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/container_margin"
-        android:gravity="right"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:textStyle="italic"
         android:textColor="@android:color/white"
-        android:textSize="30sp"
-        android:text="$0.00" />
+        android:alpha="0.5"
+        android:text="None selected. Pick a cause below to begin!" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginTop="@dimen/container_margin"
         android:background="@color/divider_transparent_white" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/container_margin"
+        android:layout_marginBottom="8dp"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        android:text="Available Causes" />
+
+    <ListView
+        android:id="@+id/availableCausesList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="8dp"
+        android:divider="@null"
+        android:clipToPadding="false" />
+
+    <TextView
+        android:id="@+id/causesListEmptyView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textStyle="italic"
+        android:textColor="@android:color/white"
+        android:alpha="0.5"
+        android:text="No causes available" />
 
 </LinearLayout>
