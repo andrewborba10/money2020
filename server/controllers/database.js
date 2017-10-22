@@ -223,14 +223,35 @@ var organizationsDb = new Database([
 
 var votesDb = new Database([
 	{
-		"electionId" : 1,
-		"votedPersonId" : 1,
-		"votes" : 500
+		"electionId" : 4,
+		"votedPersonId" : 9,
+		"votes" : 140376
 	},
 	{
-		"electionId" : 1,
-		"votedPersonId" : 1,
-		"votes" : 1000
+		"electionId" : 4,
+		"votedPersonId" : 10,
+		"votes" : 72459
+	},
+	{
+		"electionId" : 4,
+		"votedPersonId" : 11,
+		"votes" : 12835
+	},
+
+	{
+		"electionId" : 5,
+		"votedPersonId" : 12,
+		"votes" : 110287
+	},
+	{
+		"electionId" : 5,
+		"votedPersonId" : 13,
+		"votes" : 85935
+	},
+	{
+		"electionId" : 5,
+		"votedPersonId" : 14,
+		"votes" : 3778
 	}	
 ]);
 
