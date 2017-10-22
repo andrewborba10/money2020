@@ -5,7 +5,6 @@ import com.google.gson.annotations.SerializedName;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 import static com.election.hacking.ServiceConstants.KEY_ELECTION_DATE_CLOSED;
@@ -15,7 +14,6 @@ import static com.election.hacking.ServiceConstants.KEY_ELECTION_ID;
 import static com.election.hacking.ServiceConstants.KEY_ELECTION_IS_OPEN;
 import static com.election.hacking.ServiceConstants.KEY_ELECTION_TITLE;
 import static com.election.hacking.ServiceConstants.KEY_POLITICIANS;
-import static com.election.hacking.ServiceConstants.parseDate;
 
 public class Election implements Serializable {
 
@@ -56,12 +54,12 @@ public class Election implements Serializable {
         return mDescription;
     }
 
-    public Date getDateOpen() {
-        return parseDate(mDateOpen);
+    public String getDateOpen() {
+        return mDateOpen;
     }
 
-    public Date getDateClosed() {
-        return parseDate(mDateClosed);
+    public String getDateClosed() {
+        return mDateClosed;
     }
 
     public boolean getIsOpen() {

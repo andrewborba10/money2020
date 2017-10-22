@@ -10,7 +10,7 @@
     <dimen name="drawer_text">18sp</dimen>
     <dimen name="drawer_button_padding_vertical">12dp</dimen>
     <dimen name="drawer_button_padding_horizontal">24dp</dimen>
-    <dimen name="election_height">300dp</dimen>
+    <dimen name="election_height">360dp</dimen>
     <dimen name="election_width">240dp</dimen>
     <dimen name="election_icon_circle">36dp</dimen>
     <dimen name="election_candidate_padding_vertical">36dp</dimen>

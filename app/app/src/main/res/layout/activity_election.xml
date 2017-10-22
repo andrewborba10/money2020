@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/container_margin">
+    android:paddingLeft="@dimen/container_margin"
+    android:paddingRight="@dimen/container_margin"
+    android:paddingBottom="@dimen/container_margin">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleTextColor="@android:color/white"
+        app:theme="@style/ToolbarColoredBackArrow" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -37,7 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="@dimen/card_padding_vertical"
-        android:background="#33FFFFFF" />
+        android:background="@color/divider_transparent_white" />
 
     <TableLayout
         android:layout_width="match_parent"
@@ -103,7 +113,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#33FFFFFF" />
+        android:background="@color/divider_transparent_white" />
 
     <LinearLayout
         android:id="@+id/candidateListLayout"

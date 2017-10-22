@@ -28,4 +28,12 @@ public class Politician implements Serializable {
                 .append("mParty", mParty)
                 .toString();
     }
+
+    public String getName() {
+        return mName;
+    }
+
+    public String getParty() {
+        return mParty;
+    }
 }
