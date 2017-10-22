@@ -1,7 +1,7 @@
 package com.election.hacking;
 
-import android.content.Intent;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,24 +14,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.election.hacking.model.GetUserInformationResponse;
+import com.election.hacking.model.Organization;
 import com.election.hacking.model.User;
 
 import static com.election.hacking.ServiceConstants.TOKEN;
-
-import com.election.hacking.model.Organization;
 
 public class CausesFragment extends Fragment {
     public static final String FRAGMENT_TAG = "causes";
     public static final String KEY_TOTAL_DONATIONS = "totalDonations";
     private static final String TAG = "CausesFragment";
-
-    public static Bundle buildArguments(final int totalDonations) {
-        final Bundle bundle = new Bundle();
-        bundle.putInt(KEY_TOTAL_DONATIONS, totalDonations);
-        return bundle;
-    }
-
-
 
     private OrganizationAdapter organizationAdapter;
 

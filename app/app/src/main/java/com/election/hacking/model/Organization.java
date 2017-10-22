@@ -17,7 +17,7 @@ import static com.election.hacking.ServiceConstants.KEY_ORGANIZATION_TOTAL_DONAT
 public class Organization implements Serializable {
 
     @SerializedName(KEY_ORGANIZATION_ID)
-    private String mOrganizationId;
+    private int mOrganizationId;
 
     @SerializedName(KEY_ORGANIZATION_TITLE)
     private String mOrganizationTitle;
@@ -34,7 +34,7 @@ public class Organization implements Serializable {
     @SerializedName(KEY_ORGANIZATION_TAGS)
     private List<String> mOrganizationTags;
 
-    public String getOrganizationId() {
+    public int getOrganizationId() {
         return mOrganizationId;
     }
 

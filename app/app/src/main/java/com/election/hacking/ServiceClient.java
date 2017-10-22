@@ -1,6 +1,8 @@
 package com.election.hacking;
 
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.MainThread;
 
 import com.election.hacking.model.GetButtonResponse;
@@ -15,8 +17,12 @@ import com.url.utils.Response;
 import com.url.utils.UrlClient;
 
 import static com.election.hacking.ServiceConstants.KEY_DATE_OF_BIRTH;
+import static com.election.hacking.ServiceConstants.KEY_ELECTION_ID;
 import static com.election.hacking.ServiceConstants.KEY_LAST_NAME;
+import static com.election.hacking.ServiceConstants.KEY_ORGANIZATION_ID;
+import static com.election.hacking.ServiceConstants.KEY_POLITICIAN_ID;
 import static com.election.hacking.ServiceConstants.KEY_SSN;
+import static com.election.hacking.ServiceConstants.KEY_TOKEN;
 
 
 public class ServiceClient {
@@ -32,6 +38,7 @@ public class ServiceClient {
     }
 
     private final Gson mGson = new Gson();
+    private final Handler mHandler = new Handler(Looper.getMainLooper());
 
     public void verifyIdentity(final IdentityVerificationRequest request,
                                final Callback<IdentityVerificationResponse> callback) {
@@ -99,6 +106,36 @@ public class ServiceClient {
                 .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
+    public void vote(final String userToken,
+                     final int electionId,
+                     final int politicianId,
+                     final Callback<Void> callback) {
+        final Request urlRequest = UrlClient
+                .create()
+                .post("http://10.101.1.208:3000/votes")
+                .param(KEY_TOKEN, userToken)
+                .param(KEY_ELECTION_ID, electionId)
+                .param(KEY_POLITICIAN_ID, politicianId)
+                .ensureSuccess();
+
+        new ServiceCallTask<>(urlRequest, Void.class, callback)
+                .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    public void pledge(final String userToken,
+                       final int organizationId,
+                       final Callback<Void> callback) {
+        final Request urlRequest = UrlClient
+                .create()
+                .post("http://10.101.1.208:3000/organizations/pledge")
+                .param(KEY_TOKEN, userToken)
+                .param(KEY_ORGANIZATION_ID, organizationId)
+                .ensureSuccess();
+
+        new ServiceCallTask<>(urlRequest, Void.class, callback)
+                .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
     private class ServiceCallTask<T> extends AsyncTask<Object, Void, T> {
 
         private final Request mRequest;
@@ -113,23 +150,28 @@ public class ServiceClient {
             mCallback = callback;
         }
 
-        private Response<String> getResponse() {
-            try {
-                return mRequest.asString();
-            } catch (final Exception e) {
-                mCallback.onError(e);
-            }
-            return null;
-        }
-
         @Override
         protected T doInBackground(final Object... params) {
             final Response<String> response = getResponse();
             if (response == null) {
-                throw new RuntimeException("Couldn't retrieve response");
+                return null;
             }
 
             return mGson.fromJson(response.getBody(), mResponseClass);
+        }
+
+        private Response<String> getResponse() {
+            try {
+                return mRequest.asString();
+            } catch (final Exception e) {
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        mCallback.onError(e);
+                    }
+                });
+            }
+            return null;
         }
 
         @MainThread

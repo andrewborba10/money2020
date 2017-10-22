@@ -10,11 +10,14 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.election.hacking.model.Organization;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import static com.election.hacking.ServiceConstants.TOKEN;
 
 public class OrganizationActivity extends AppCompatActivity {
     public static final String KEY_ORGANIZATION = "organization";
@@ -38,7 +41,7 @@ public class OrganizationActivity extends AppCompatActivity {
         TextView organizationTags = (TextView) findViewById(R.id.organizationTags);
         TextView selectCauseButton = (TextView) findViewById(R.id.selectCauseButton);
 
-        Organization organization = (Organization) getIntent().getSerializableExtra(KEY_ORGANIZATION);
+        final Organization organization = (Organization) getIntent().getSerializableExtra(KEY_ORGANIZATION);
         if (organization != null) {
             if (organizationImage != null) {
                 organizationImageContainer.setBackgroundColor(Color.WHITE);
@@ -66,8 +69,28 @@ public class OrganizationActivity extends AppCompatActivity {
 
         selectCauseButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                // TODO
+            public void onClick(final View v) {
+                ServiceClient
+                        .getInstance()
+                        .pledge(TOKEN, organization.getOrganizationId(), new ServiceClient.Callback<Void>() {
+                            @Override
+                            public void onSuccess(final Void result) {
+                                Toast.makeText(
+                                        OrganizationActivity.this,
+                                        "You pledged your cash back rewards to " + organization.getOrganizationTitle() + "!",
+                                        Toast.LENGTH_LONG)
+                                .show();
+                            }
+
+                            @Override
+                            public void onError(final Exception e) {
+                                Toast.makeText(
+                                        OrganizationActivity.this,
+                                        "Failed to pledge your cash back rewards",
+                                        Toast.LENGTH_LONG)
+                                        .show();
+                            }
+                        });
             }
         });
     }
