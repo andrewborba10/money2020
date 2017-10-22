@@ -1,6 +1,8 @@
 package com.election.hacking;
 
-public class Candidate {
+import java.io.Serializable;
+
+public class Candidate implements Serializable {
     private int id;
     private String name;
     private String party;
