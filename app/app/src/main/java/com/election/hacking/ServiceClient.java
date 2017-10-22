@@ -4,11 +4,14 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.MainThread;
+import android.util.Log;
 
 import com.election.hacking.model.GetButtonResponse;
 import com.election.hacking.model.GetElectionsResponse;
 import com.election.hacking.model.GetOrganizationsResponse;
+import com.election.hacking.model.GetRewardsResponse;
 import com.election.hacking.model.GetUserInformationResponse;
+import com.election.hacking.model.GetVoteResponse;
 import com.election.hacking.model.IdentityVerificationRequest;
 import com.election.hacking.model.IdentityVerificationResponse;
 import com.election.hacking.model.PledgeResponse;
@@ -138,14 +141,24 @@ public class ServiceClient {
     }
 
     public void getVotes(final String userToken,
-                         final Callback<Void> callback) {
+                         final Callback<GetVoteResponse> callback) {
         final Request urlRequest = UrlClient
                 .create()
-                .get("http://10.101.1.208:3000/elections")
-                .param(KEY_TOKEN, userToken)
+                .get("http://10.101.1.208:3000/elections/" + userToken)
                 .ensureSuccess();
 
-        new ServiceCallTask<>(urlRequest, Void.class, callback)
+        new ServiceCallTask<>(urlRequest, GetVoteResponse.class, callback)
+                .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    public void getRewards(final String userToken,
+                           final Callback<GetRewardsResponse> callback) {
+        final Request urlRequest = UrlClient
+                .create()
+                .get("http://10.101.1.208:3000/rewards/" + userToken)
+                .ensureSuccess();
+
+        new ServiceCallTask<>(urlRequest, GetRewardsResponse.class, callback)
                 .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
@@ -170,6 +183,8 @@ public class ServiceClient {
                 return null;
             }
 
+            Log.d(TAG, "Response body: " + response.getBody());
+
             return mGson.fromJson(response.getBody(), mResponseClass);
         }
 
@@ -180,6 +195,7 @@ public class ServiceClient {
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
+                        Log.e(TAG, "Error", e);
                         mCallback.onError(e);
                     }
                 });
@@ -196,5 +212,12 @@ public class ServiceClient {
     public interface Callback<T> {
         void onSuccess(final T result);
         void onError(final Exception e);
+    }
+
+    public abstract static class LogErrorCallback<T> implements Callback<T> {
+        @Override
+        public void onError(final Exception e) {
+            Log.e(TAG, "Failed to load", e);
+        }
     }
 }

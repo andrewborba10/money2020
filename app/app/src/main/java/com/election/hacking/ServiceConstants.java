@@ -29,6 +29,9 @@ public class ServiceConstants {
     // Pledge API
     public static final String KEY_ORGANIZATION = "organization";
 
+    // Rewards API
+    public static final String KEY_BALANCE = "balance";
+
     // Developer
     public static final String KEY_DEVELOPER_ID = "politicianId";
     public static final String KEY_DEVELOPER_NAME = "name";
@@ -59,7 +62,7 @@ public class ServiceConstants {
     public static final String KEY_ORGANIZATION_TAGS = "tags";
 
     // User
-    public static final String KEY_USER_PLEDGED_ORGANIZATION = "pledgedOrganization";
+    public static final String KEY_USER_PLEDGED_ORGANIZATION = "organization";
     public static final String KEY_USER_TOTAL_DONATED = "totalDonations";
 
     // Vote

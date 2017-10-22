@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        VotingKeyValueStore.getInstance();
+
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         TextView electionsButton = (TextView) findViewById(R.id.electionsButton);

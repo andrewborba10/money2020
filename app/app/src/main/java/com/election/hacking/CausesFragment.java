@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.election.hacking.model.GetRewardsResponse;
 import com.election.hacking.model.GetUserInformationResponse;
 import com.election.hacking.model.Organization;
 import com.election.hacking.model.User;
@@ -56,19 +57,30 @@ public class CausesFragment extends Fragment {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onSuccess(final GetUserInformationResponse result) {
-                        final TextView viewById = (TextView) rootView.findViewById(R.id.myDonationsToDate);
+                        final TextView donationsView = (TextView) rootView.findViewById(R.id.myDonationsToDate);
                         final User user = result.getUser();
                         if (user == null) {
                             return;
                         }
 
-                        viewById.setText("$" + String.valueOf(user.getTotalDonated()));
+                        donationsView.setText("$" + String.valueOf(user.getTotalDonated()));
                         setupSelectedCause(user.getPledgedOrganization());
                     }
 
                     @Override
                     public void onError(final Exception e) {
                         Log.e(TAG, "Failed to load user information", e);
+                    }
+                });
+
+        ServiceClient
+                .getInstance()
+                .getRewards(TOKEN, new ServiceClient.LogErrorCallback<GetRewardsResponse>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onSuccess(final GetRewardsResponse result) {
+                        final TextView rewardsView = (TextView) rootView.findViewById(R.id.rewardsBalance);
+                        rewardsView.setText("$" + String.valueOf(result.getBalance()));
                     }
                 });
 

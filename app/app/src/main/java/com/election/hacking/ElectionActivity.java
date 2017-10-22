@@ -2,7 +2,6 @@ package com.election.hacking;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -17,19 +16,27 @@ import com.election.hacking.model.Politician;
 
 import java.util.List;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+import static com.election.hacking.ServiceConstants.TOKEN;
+
 public class ElectionActivity extends AppCompatActivity {
 
     public static final String KEY_ELECTION = "election";
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_election);
 
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         getSupportActionBar().setTitle("Election Details");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
 
         TextView electionTitle = (TextView) findViewById(R.id.electionTitle);
         TextView electionDescription = (TextView) findViewById(R.id.electionDescription);
@@ -53,6 +60,7 @@ public class ElectionActivity extends AppCompatActivity {
                     TextView candidateName = (TextView) candidateView.findViewById(R.id.candidateName);
                     TextView candidateParty = (TextView) candidateView.findViewById(R.id.candidateParty);
                     ImageView candidateImage = (ImageView) candidateView.findViewById(R.id.candidateImage);
+                    final ImageView checkmark = (ImageView) candidateView.findViewById(R.id.candidateCheckmark);
 
                     candidateImage.setBackgroundResource(ElectionUtil.getDrawableForCandidateParty(candidate));
                     candidateName.setText(candidate.getName());
@@ -67,13 +75,17 @@ public class ElectionActivity extends AppCompatActivity {
                         }
                     });
                     candidateListLayout.addView(candidateView);
+                    final Integer politicianId = VotingKeyValueStore
+                            .getInstance()
+                            .votedFor(TOKEN, election.getElectionId());
+                    checkmark.setVisibility(politicianId != null && politicianId == candidate.getPoliticianId() ? VISIBLE : GONE);
                 }
             }
         }
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(final MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
                 onBackPressed();

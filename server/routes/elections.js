@@ -4,7 +4,7 @@ var router = express.Router();
 
 router.get('/:token', function(req, res, next) {
 	var userId = req.params.token;
-	var election = elections.getElectionForUser(userId);
+	var election = elections.getVotesForUser(userId);
 
 	res.json({"votes" : election});
 });

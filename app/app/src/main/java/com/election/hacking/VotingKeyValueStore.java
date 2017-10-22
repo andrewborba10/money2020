@@ -1,12 +1,16 @@
 package com.election.hacking;
 
-import android.util.Pair;
+import android.content.Context;
+import android.widget.Toast;
 
-import java.util.ArrayList;
+import com.election.hacking.model.ElectionUserPair;
+import com.election.hacking.model.GetVoteResponse;
+import com.election.hacking.model.Vote;
+
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
+
+import static com.election.hacking.ServiceConstants.TOKEN;
 
 public class VotingKeyValueStore {
     private static VotingKeyValueStore sVotingKeyValueStore;
@@ -18,33 +22,44 @@ public class VotingKeyValueStore {
         return sVotingKeyValueStore;
     }
 
-    private final Map<String, List<Pair<Integer, Integer>>> mKeyValueStore;
+    private final Map<ElectionUserPair, Integer> mKeyValueStore;
 
     public VotingKeyValueStore() {
         mKeyValueStore = new HashMap<>();
+        ServiceClient
+                .getInstance()
+                .getVotes(TOKEN, new ServiceClient.LogErrorCallback<GetVoteResponse>() {
+                    @Override
+                    public void onSuccess(final GetVoteResponse result) {
+                        for (final Vote vote : result.getVotes()) {
+                            update(vote.getToken(), vote.getElectionId(), vote.getPoliticianId());
+                        }
+                    }
+                });
     }
 
-    public synchronized void vote(final String userToken, final int electionId, final int politicianId) {
-        if (!mKeyValueStore.containsKey(userToken)) {
-            mKeyValueStore.put(userToken, new ArrayList<Pair<Integer, Integer>>());
-        }
+    public synchronized void vote(final Context context, final String userToken, final int electionId, final int politicianId) {
+        ServiceClient
+                .getInstance()
+                .vote(userToken, electionId, politicianId, new ServiceClient.LogErrorCallback<Void>() {
+                    @Override
+                    public void onSuccess(final Void result) {
+                        update(userToken, electionId, politicianId);
 
-        mKeyValueStore.get(userToken).add(new Pair<>(electionId, politicianId));
+                        Toast
+                                .makeText(context, "Successfully voted!", Toast.LENGTH_SHORT)
+                                .show();
+                    }
+                });
+    }
+
+    private void update(final String userToken, final int electionId, final int politicianId) {
+        final ElectionUserPair key = new ElectionUserPair(userToken, electionId);
+        mKeyValueStore.put(key, politicianId);
     }
 
     public synchronized Integer votedFor(final String userToken, final int electionId) {
-        if (!mKeyValueStore.containsKey(userToken)) {
-            return null;
-        }
-
-        final List<Pair<Integer, Integer>> votes = mKeyValueStore.get(userToken);
-
-        for (final Pair<Integer, Integer> vote : votes) {
-            if (vote.first == electionId) {
-                return vote.second;
-            }
-        }
-
-        return null;
+        final ElectionUserPair electionUserPair = new ElectionUserPair(userToken, electionId);
+        return mKeyValueStore.get(electionUserPair);
     }
 }
