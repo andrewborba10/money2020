@@ -6,11 +6,11 @@ router.get('/:votedPersonId', function(req, res, next) {
 	var votedPersonId = req.params.votedPersonId;
 	var orgs = organizations.getRelatedOrganizations(votedPersonId);
 
-	res.json(orgs);
+	res.json({'organizations': orgs});
 });
 
 router.get('/', function(req, res, next) {
-	res.json(organizations.getOrganizations());
+	res.json({'organizations': organizations.getOrganizations()});
 });
 
 module.exports = router;

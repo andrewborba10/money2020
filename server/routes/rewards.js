@@ -1,9 +1,10 @@
 var express = require('express');
 var Promise = require('promise');
 var request = require('request');
+var rewards = require('../controllers/rewards.js');
 var router = express.Router();
 
-function getAuthorizationHeader() {
+function getAuthorizationHeader(userId) {
 	return 'Bearer eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwicGNrIjoxLCJhbGciOiJkaXIiLCJ0diI6Miwia2lkIjoiYTdxIn0..Q8EPUTo189PyagVaeXKw9XgvYN1pEz5Vgp1bgF4Hj9TE2anFkmGILcf7UX9iO6L0cUTgJQm3blatkUZUyUKc6cHFyyuVPKmtZDIU2zmP6VEhxmroUfeqh8YJnOEw9LRVKU1Pq4fVRuZMsIM1Mf6F2oMOAFL8JTw7AK4CQVUWtti4KHaNBtDX9cHOuwRtDbKhQbmySLP0g5ENzrC9gWMLprmq66hX5bI4TAiF2f7KlgjtT9lvph9pLyDsfBhtOanWj6gVmYMqxcNQlUHcgtsH3nlthX1PsOKQppDtmS09hPELzTxEn2kxk2btJ0KPy2iQFQyDSWfER1xgJnFDASr1sg8MNeQh3Qjmp4vuruQMimu1IFVvb1cIsIDS7cWPCUPa2UFYz9YfW1uXVnUpOyZTCWZ3E28YL70Rn2TbP4Hw030rgBWF5Ok1YD51e7BWJXXCq1lIWUG85WmjWZ5Il4nVNZBxBFDPR7lQMG2Gw36ibffzfTDwwHfWhlpkmbqtRLawKEVtYNDcpIvocujQJFHlwCRJ9uex5BXJzQQ6Mrp1cvxp3sp65mU5EPSU4J1OK0Iuj8Yv.I3YRuEIDtnqtHjjjrb9OK0A';
 }
 
@@ -52,16 +53,36 @@ function getRewardsResponse(rewardsDetailsResponse) {
 	}
 }
 
-router.get('/', function(req, res, next) {
-	var authorizationHeader = getAuthorizationHeader();
+function getRewards(res, userId) {
+	if (rewards.hasCachedRewards(userId)) {
+		console.log('cached rewards');
+		res.json(rewards.getCachedRewards(userId));
+		return;
+	}
+
+	var authorizationHeader = getAuthorizationHeader(userId);
 	
 	getRewardsAccount(authorizationHeader, function(rewardsAccountsResponse) {
 		var rewardsAccountReferenceId = getRewardsAccountReferenceId(rewardsAccountsResponse);
 		getRewardsDetails(authorizationHeader, rewardsAccountReferenceId, function(rewardsDetailsResponse) {
 			var rewardsResponse = getRewardsResponse(rewardsDetailsResponse);
+			rewards.cacheRewards(userId, rewardsResponse);
 			res.json(rewardsResponse);
 		});
 	});
+}
+
+router.get('/:token', function(req, res, next) {
+	var userId = req.params.token;
+	getRewards(res, userId);
+});
+
+router.post('/', function(req, res, next) {
+	var userId = req.body.token;
+	var amountDeducted = req.body.amountDeducted;
+
+	rewards.deductRewards(userId, amountDeducted);
+	getRewards(res);
 });
 
 module.exports = router;

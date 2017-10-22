@@ -9,6 +9,11 @@ function Database(initStore) {
 		return this.items;
 	};
 
+	this.has = function(matcher) {
+		items = this.findAll(matcher);
+		return items != null && items.length > 0;
+	}
+
 	this.findByProperty = function(propertyName, propertyValue) {
 		return this.find(function(item) {
 			return item[propertyName] == propertyValue;
@@ -178,43 +183,43 @@ var electionsDb = new Database([
 
 var organizationsDb = new Database([
 	{
-		"donationId" : 1,
+		"organizationId" : 1,
 		"title" : "Clinton Foundation",
 		"description" : "We believe that the best way to unlock human potential is through the power of creative collaboration...",
 		"relatedPersonIds" : [0, 3, 6, 9, 12]
 	},
 	{
-		"donationId" : 2,
+		"organizationId" : 2,
 		"title" : "American Civil Liberties Union",
 		"description" : "The American Civil Liberties Union was founded in 1920 and is our nation's guardian of liberty. The ACLU works in the courts, legislatures and communities to defend and preserve the individual rights and liberties guaranteed to all people in this country by the Constitution and laws of the United States.",
 		"relatedPersonIds" : [0, 3, 6, 9, 12]
 	},
 	{
-		"donationId" : 3,
+		"organizationId" : 3,
 		"title" : "National Organization for Women",
 		"description" : "The National Organization for Women is the largest organization of feminist grassroots activists in the United States. NOW has hundreds of chapters and hundreds of thousands of members and activists in all 50 states and the District of Columbia.",
 		"relatedPersonIds" : [0, 3, 6, 9, 12]
 	},
 	{
-		"donationId" : 4,
+		"organizationId" : 4,
 		"title" : "EarthJustice",
 		"description" : "EarthJustice is the largest nonprofit environmental law organization in the country, working to protect wildlife, for healthy communities, and for cleaner energy options. The organization represents its clients free of charge.",
 		"relatedPersonIds" : [2, 5, 8, 11, 14]
 	},
 	{
-		"donationId" : 5,
+		"organizationId" : 5,
 		"title" : "CrowdPac",
 		"description" : "We want to fight the power of Big Money in politics by helping small dollar donors engage in the political process. We want more citizens to vote and run for office. And we want to give people a platform to take action - whether it’s by joining a political community, or organizing one of their own.",
 		"relatedPersonIds" : [2, 5, 8, 11, 14]
 	},
 	{
-		"donationId" : 6,
+		"organizationId" : 6,
 		"title" : "Heritage Foundation",
 		"description" : "The mission of The Heritage Foundation is to formulate and promote conservative public policies based on the principles of free enterprise, limited government, individual freedom, traditional American values, and a strong national defense.",
 		"relatedPersonIds" : [1, 4, 7, 10, 13]
 	},
 	{
-		"donationId" : 7,
+		"organizationId" : 7,
 		"title" : "Planned Parenthood",
 		"description" : "Planned Parenthood is a trusted health care provider, an informed educator, a passionate advocate, and a global partner helping similar organizations around the world. Planned Parenthood delivers vital reproductive health care, sex education, and information to millions of people worldwide.",
 		"relatedPersonIds" : [1, 4, 7, 10, 13]
@@ -255,6 +260,9 @@ var votesDb = new Database([
 	}	
 ]);
 
+var rewardsDb = new Database([
+]);
+
 module.exports = {
 	getElectionsDb : function() {
 		return electionsDb; 
@@ -264,5 +272,8 @@ module.exports = {
 	},
 	getVotesDb : function() {
 		return votesDb;
+	},
+	getRewardsDb : function() {
+		return rewardsDb;
 	}
 };
