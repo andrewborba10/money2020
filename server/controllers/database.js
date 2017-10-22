@@ -71,11 +71,27 @@ var organizationsDb = new Database([
 	}
 ]);
 
+var votesDb = new Database([
+	{
+		"userId" : 1,
+		"electionId" : 1,
+		"votedPersonId" : 1
+	},
+	{
+		"userId" : 2,
+		"electionId" : 1,
+		"votedPersonId" : 1
+	}	
+]);
+
 module.exports = {
 	getElectionsDb : function() {
 		return electionsDb; 
 	},
 	getOrganizationsDb : function() {
 		return organizationsDb;
+	},
+	getVotesDb : function() {
+		return votesDb;
 	}
 };
