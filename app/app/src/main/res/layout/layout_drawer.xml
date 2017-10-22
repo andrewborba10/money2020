@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="300dp"
+    android:layout_height="match_parent"
+    android:layout_gravity="left"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <com.github.florent37.diagonallayout.DiagonalLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginBottom="16dp"
+        app:diagonal_direction="right"
+        app:diagonal_angle="12"
+        app:diagonal_position="bottom">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/capital_one_blue" />
+
+    </com.github.florent37.diagonallayout.DiagonalLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/drawer_button_padding_horizontal"
+        android:paddingRight="@dimen/drawer_button_padding_horizontal"
+        android:paddingTop="@dimen/drawer_button_padding_vertical"
+        android:paddingBottom="@dimen/drawer_button_padding_vertical"
+        android:gravity="center_vertical"
+        android:textSize="@dimen/drawer_text"
+        android:text="Elections"
+        android:clickable="true"
+        android:background="?attr/selectableItemBackground"
+        android:drawableLeft="@drawable/ic_checkbox"
+        android:drawablePadding="@dimen/drawer_button_padding_vertical" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/drawer_button_padding_horizontal"
+        android:paddingRight="@dimen/drawer_button_padding_horizontal"
+        android:paddingTop="@dimen/drawer_button_padding_vertical"
+        android:paddingBottom="@dimen/drawer_button_padding_vertical"
+        android:gravity="center_vertical"
+        android:textSize="@dimen/drawer_text"
+        android:text="Causes"
+        android:clickable="true"
+        android:background="?attr/selectableItemBackground"
+        android:drawableLeft="@drawable/ic_heart"
+        android:drawablePadding="@dimen/drawer_button_padding_vertical" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/drawer_button_padding_horizontal"
+        android:paddingRight="@dimen/drawer_button_padding_horizontal"
+        android:paddingTop="@dimen/drawer_button_padding_vertical"
+        android:paddingBottom="@dimen/drawer_button_padding_vertical"
+        android:gravity="center_vertical"
+        android:textSize="@dimen/drawer_text"
+        android:text="About"
+        android:clickable="true"
+        android:background="?attr/selectableItemBackground"
+        android:drawableLeft="@drawable/ic_info"
+        android:drawablePadding="@dimen/drawer_button_padding_vertical" />
+
+</LinearLayout>
