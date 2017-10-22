@@ -3,6 +3,11 @@ package com.election.hacking;
 import android.os.AsyncTask;
 import android.support.annotation.MainThread;
 
+import com.election.hacking.model.GetButtonResponse;
+import com.election.hacking.model.GetElectionsResponse;
+import com.election.hacking.model.GetOrganizationsResponse;
+import com.election.hacking.model.IdentityVerificationRequest;
+import com.election.hacking.model.IdentityVerificationResponse;
 import com.google.gson.Gson;
 import com.url.utils.Request;
 import com.url.utils.Response;

@@ -1,4 +1,4 @@
-package com.election.hacking;
+package com.election.hacking.model;
 
 import com.google.gson.annotations.SerializedName;
 

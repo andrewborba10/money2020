@@ -14,6 +14,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.election.hacking.model.GetElectionsResponse;
+import com.election.hacking.model.GetOrganizationsResponse;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private ElectionAdapter electionAdapter;
