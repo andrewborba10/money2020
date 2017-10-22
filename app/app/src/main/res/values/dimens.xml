@@ -3,11 +3,15 @@
     <dimen name="container_margin">16dp</dimen>
     <dimen name="form_spacing">8dp</dimen>
     <dimen name="form_padding">60dp</dimen>
-    <dimen name="card_corner_radius">4dp</dimen>
+    <dimen name="card_corner_radius">8dp</dimen>
     <dimen name="card_elevation">4dp</dimen>
     <dimen name="card_padding_horizontal">16dp</dimen>
     <dimen name="card_padding_vertical">12dp</dimen>
     <dimen name="drawer_text">18sp</dimen>
     <dimen name="drawer_button_padding_vertical">12dp</dimen>
-    <dimen name="drawer_button_padding_horizontal">16dp</dimen>
+    <dimen name="drawer_button_padding_horizontal">24dp</dimen>
+    <dimen name="election_height">300dp</dimen>
+    <dimen name="election_width">240dp</dimen>
+    <dimen name="election_icon_circle">36dp</dimen>
+    <dimen name="election_candidate_padding_vertical">36dp</dimen>
 </resources>

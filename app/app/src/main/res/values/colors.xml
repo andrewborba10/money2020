@@ -2,5 +2,8 @@
 <resources>
     <color name="capital_one_blue">#004879</color>
     <color name="capital_one_blue_dark">#003960</color>
+    <color name="capital_one_blue_darker">#001b2d</color>
     <color name="red">#e00017</color>
+    <color name="blue">#0087e0</color>
+    <color name="divider_gray">#dddddd</color>
 </resources>
