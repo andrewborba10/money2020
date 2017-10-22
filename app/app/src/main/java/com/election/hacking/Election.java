@@ -1,8 +1,9 @@
 package com.election.hacking;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Election {
+public class Election implements Serializable {
     private int id;
     private String title;
     private String description;

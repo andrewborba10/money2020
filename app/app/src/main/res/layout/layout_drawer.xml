@@ -23,6 +23,7 @@
     </com.github.florent37.diagonallayout.DiagonalLayout>
 
     <TextView
+        android:id="@+id/electionsButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/drawer_button_padding_horizontal"
@@ -38,6 +39,7 @@
         android:drawablePadding="@dimen/drawer_button_padding_vertical" />
 
     <TextView
+        android:id="@+id/causesButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/drawer_button_padding_horizontal"
@@ -53,6 +55,7 @@
         android:drawablePadding="@dimen/drawer_button_padding_vertical" />
 
     <TextView
+        android:id="@+id/aboutButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/drawer_button_padding_horizontal"
