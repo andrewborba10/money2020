@@ -1,8 +1,11 @@
 var express = require('express');
+var button = require('../controllers/button.js')
 var router = express.Router();
 
 
 router.get('/', function(req, res, next) {
+    button.getButton();
+
     res.status(200).send(
         {
             "Success": "Successfully retrieved button url", 
