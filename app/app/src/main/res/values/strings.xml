@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">VotingBooth</string>
     <string name="copyright_message">©2017 VotingBooth team. All rights reserved.</string>
+    <string name="welcome_message">Welcome to VotingBooth!</string>
     <string name="drawer_open">Open drawer</string>
     <string name="drawer_close">Close drawer</string>
     <string name="no_tags_available">No tags available for this cause</string>
