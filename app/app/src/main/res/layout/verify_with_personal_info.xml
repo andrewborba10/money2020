@@ -1,42 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <TextView
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="SSN"/>
+        app:titleTextColor="@android:color/white"
+        app:theme="@style/ToolbarColoredBackArrow" />
 
-    <EditText
-        android:id="@+id/ssn"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:orientation="vertical"
+        android:padding="48dp"
+        android:gravity="center">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Date of Birth"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:text="SSN" />
 
-    <EditText
-        android:id="@+id/dateOfBirth"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/ssn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            app:backgroundTint="@android:color/white" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Last Name"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:text="Date of Birth" />
 
-    <EditText
-        android:id="@+id/lastName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/dateOfBirth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            app:backgroundTint="@android:color/white" />
 
-    <Button
-        android:id="@+id/verifyButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:text="Last Name" />
 
-</LinearLayout>
+        <EditText
+            android:id="@+id/lastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            app:backgroundTint="@android:color/white" />
+
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="32dp"
+            android:background="@android:color/white">
+
+            <TextView
+                android:id="@+id/verifyButton"
+                android:layout_width="wrap_content"
+                android:layout_height="64dp"
+                android:paddingLeft="36dp"
+                android:paddingRight="36dp"
+                android:gravity="center"
+                android:clickable="true"
+                android:background="?attr/selectableItemBackground"
+                android:textColor="@color/capital_one_blue"
+                android:textStyle="bold"
+                android:text="Login" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

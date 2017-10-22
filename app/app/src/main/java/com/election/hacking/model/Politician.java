@@ -13,7 +13,7 @@ import static com.election.hacking.ServiceConstants.KEY_POLITICIAN_PARTY;
 
 public class Politician implements Serializable {
     @SerializedName(KEY_POLITICIAN_ID)
-    private int mPersonId;
+    private int mPoliticianId;
 
     @SerializedName(KEY_POLITICIAN_NAME)
     private String mName;
@@ -27,11 +27,15 @@ public class Politician implements Serializable {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .append("mPersonId", mPersonId)
+                .append("mPoliticianId", mPoliticianId)
                 .append("mName", mName)
                 .append("mParty", mParty)
                 .append("mImageUrl", mImageUrl)
                 .toString();
+    }
+
+    public int getPoliticianId() {
+        return mPoliticianId;
     }
 
     public String getName() {

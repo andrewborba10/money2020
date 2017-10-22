@@ -20,6 +20,7 @@ import java.util.ArrayList;
 
 public class PoliticianActivity extends AppCompatActivity {
     public static final String KEY_POLITICIAN = "politician";
+    public static final String KEY_ELECTION_ID = "electionId";
 
     private OrganizationAdapter organizationAdapter;
 
@@ -40,7 +41,9 @@ public class PoliticianActivity extends AppCompatActivity {
         ListView relatedCausesList = (ListView) findViewById(R.id.relatedCausesList);
         TextView submitVoteButton = (TextView) findViewById(R.id.submitVoteButton);
 
-        Politician politician = (Politician) getIntent().getSerializableExtra(KEY_POLITICIAN);
+        final int electionId = (int) getIntent().getSerializableExtra(KEY_ELECTION_ID);
+
+        final Politician politician = (Politician) getIntent().getSerializableExtra(KEY_POLITICIAN);
         if (politician != null) {
             if (politician.getImageUrl() != null) {
                 politicianIcon.setVisibility(View.GONE);
@@ -73,7 +76,11 @@ public class PoliticianActivity extends AppCompatActivity {
         submitVoteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO
+                VotingKeyValueStore.getInstance().vote(
+                        ServiceConstants.TOKEN,
+                        electionId,
+                        politician.getPoliticianId()
+                );
             }
         });
     }

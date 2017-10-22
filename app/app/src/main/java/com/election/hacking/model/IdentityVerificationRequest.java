@@ -53,12 +53,8 @@ public class IdentityVerificationRequest implements Serializable {
             return this;
         }
 
-        public Builder withDateOfBirth(final String date) {
-            try {
-                mDateOfBirth = DATE_FORMAT.parse(date);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+        public Builder withDateOfBirth(final String date) throws ParseException {
+            mDateOfBirth = DATE_FORMAT.parse(date);
             return this;
         }
 
