@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -86,7 +85,6 @@ public class OrganizationActivity extends AppCompatActivity {
                                 final Organization pledgedOrganization = result.getOrganization();
                                 intent.putExtra(CausesFragment.KEY_ORGANIZATION, pledgedOrganization);
                                 setResult(Activity.RESULT_OK, intent);
-                                Snackbar.make(findViewById(android.R.id.content), "Thanks for pledging your cash back rewards to " + pledgedOrganization.getOrganizationTitle() + "!", Snackbar.LENGTH_LONG).show();
                                 finish();
                             }
 
