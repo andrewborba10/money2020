@@ -9,12 +9,12 @@ import static com.election.hacking.ServiceConstants.KEY_USER_TOTAL_DONATED;
 
 public class User implements Serializable {
     @SerializedName(KEY_USER_PLEDGED_ORGANIZATION)
-    private String mPledgedOrganization;
+    private Organization mPledgedOrganization;
 
     @SerializedName(KEY_USER_TOTAL_DONATED)
     private int mTotalDonated;
 
-    public String getPledgedOrganization() {
+    public Organization getPledgedOrganization() {
         return mPledgedOrganization;
     }
 

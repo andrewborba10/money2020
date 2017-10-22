@@ -86,7 +86,10 @@
         android:textStyle="italic"
         android:textColor="@android:color/white"
         android:alpha="0.5"
+        android:visibility="invisible"
         android:text="None selected. Pick a cause below to begin!" />
+
+    <include layout="@layout/item_organization" />
 
     <View
         android:layout_width="match_parent"
