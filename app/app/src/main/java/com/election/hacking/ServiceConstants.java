@@ -26,6 +26,9 @@ public class ServiceConstants {
     // Votes API
     public static final String KEY_VOTES = "votes";
 
+    // Pledge API
+    public static final String KEY_ORGANIZATION = "organization";
+
     // Politician
     public static final String KEY_POLITICIAN_ID = "politicianId";
     public static final String KEY_POLITICIAN_NAME = "name";

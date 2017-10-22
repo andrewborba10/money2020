@@ -1,5 +1,6 @@
 package com.election.hacking;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,21 +8,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.election.hacking.model.Organization;
+import com.election.hacking.model.PledgeResponse;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import static com.election.hacking.CausesFragment.REQUEST_CODE;
 import static com.election.hacking.ServiceConstants.TOKEN;
 
 public class OrganizationActivity extends AppCompatActivity {
     public static final String KEY_ORGANIZATION = "organization";
+    private static final String TAG = "OrganizationActivity";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,23 +78,18 @@ public class OrganizationActivity extends AppCompatActivity {
             public void onClick(final View v) {
                 ServiceClient
                         .getInstance()
-                        .pledge(TOKEN, organization.getOrganizationId(), new ServiceClient.Callback<Void>() {
+                        .pledge(TOKEN, organization.getOrganizationId(), new ServiceClient.Callback<PledgeResponse>() {
                             @Override
-                            public void onSuccess(final Void result) {
-                                Toast.makeText(
-                                        OrganizationActivity.this,
-                                        "You pledged your cash back rewards to " + organization.getOrganizationTitle() + "!",
-                                        Toast.LENGTH_LONG)
-                                .show();
+                            public void onSuccess(final PledgeResponse result) {
+                                final Intent intent = new Intent();
+                                intent.putExtra(CausesFragment.KEY_ORGANIZATION, result.getOrganization());
+                                setResult(REQUEST_CODE, intent);
+                                finish();
                             }
 
                             @Override
                             public void onError(final Exception e) {
-                                Toast.makeText(
-                                        OrganizationActivity.this,
-                                        "Failed to pledge your cash back rewards",
-                                        Toast.LENGTH_LONG)
-                                        .show();
+                                Log.e(TAG, "Failed to pledge", e);
                             }
                         });
             }

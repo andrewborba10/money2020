@@ -21,6 +21,8 @@ import static com.election.hacking.ServiceConstants.TOKEN;
 
 public class CausesFragment extends Fragment {
     public static final String FRAGMENT_TAG = "causes";
+    public static final String KEY_ORGANIZATION = "organization";
+    public static final int REQUEST_CODE = 324;
     public static final String KEY_TOTAL_DONATIONS = "totalDonations";
     private static final String TAG = "CausesFragment";
 
@@ -29,9 +31,9 @@ public class CausesFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable final Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_causes, container, false);
+        final ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_causes, container, false);
 
-        organizationAdapter =((MainActivity)getActivity()).getOrganizationAdapter();
+        organizationAdapter = ((MainActivity)getActivity()).getOrganizationAdapter();
 
         final ListView availableCausesList = (ListView) rootView.findViewById(R.id.availableCausesList);
         availableCausesList.setEmptyView(rootView.findViewById(R.id.causesListEmptyView));
@@ -42,7 +44,7 @@ public class CausesFragment extends Fragment {
                 Organization organization = (Organization) organizationAdapter.getItem(position);
                 Intent intent = new Intent(getActivity(), OrganizationActivity.class);
                 intent.putExtra(OrganizationActivity.KEY_ORGANIZATION, organization);
-                startActivity(intent);
+                startActivityForResult(intent, REQUEST_CODE);
             }
         });
 
@@ -54,9 +56,12 @@ public class CausesFragment extends Fragment {
                     public void onSuccess(final GetUserInformationResponse result) {
                         final TextView viewById = (TextView) rootView.findViewById(R.id.myDonationsToDate);
                         final User user = result.getUser();
-                        if (user != null) {
-                            viewById.setText("$" + String.valueOf(user.getTotalDonated()));
+                        if (user == null) {
+                            return;
                         }
+
+                        viewById.setText("$" + String.valueOf(user.getTotalDonated()));
+                        setupSelectedCause(user.getPledgedOrganization());
                     }
 
                     @Override
@@ -66,5 +71,26 @@ public class CausesFragment extends Fragment {
                 });
 
         return rootView;
+    }
+
+    @Override
+    public void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        if (requestCode != REQUEST_CODE) {
+            return;
+        }
+        setupSelectedCause((Organization) data.getSerializableExtra(KEY_ORGANIZATION));
+    }
+
+    private void setupSelectedCause(final Organization pledgedOrganization) {
+        final View viewById = getActivity().findViewById(R.id.no_cause_selected_text);
+        if (pledgedOrganization == null) {
+            viewById.setVisibility(View.VISIBLE);
+        } else {
+            viewById.setVisibility(View.GONE);
+            final ViewGroup selectedCauseHolder = (ViewGroup) getActivity().findViewById(R.id.selectedCauseHolder);
+            final View view = OrganizationAdapter.bindView(getActivity(), null, pledgedOrganization);
+            selectedCauseHolder.removeAllViews();
+            selectedCauseHolder.addView(view);
+        }
     }
 }
