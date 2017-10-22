@@ -3,6 +3,7 @@ package com.election.hacking;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -20,6 +21,10 @@ public class ElectionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_election);
+
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        getSupportActionBar().setTitle("Election Details");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         TextView electionTitle = (TextView) findViewById(R.id.electionTitle);
         TextView electionDescription = (TextView) findViewById(R.id.electionDescription);

@@ -8,9 +8,22 @@
     android:id="@+id/drawerLayout">
 
     <FrameLayout
-        android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/fragmentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:titleTextColor="@android:color/white"
+            app:theme="@style/ToolbarColoredBackArrow" />
+
+    </FrameLayout>
 
     <include layout="@layout/layout_drawer" />
 
