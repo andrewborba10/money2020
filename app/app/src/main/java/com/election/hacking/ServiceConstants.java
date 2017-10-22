@@ -23,8 +23,10 @@ public class ServiceConstants {
     // Get User Information API
     public static final String KEY_USER = "user";
 
+    // Votes API
+
     // Politician
-    public static final String KEY_POLITICIAN_ID = "personId";
+    public static final String KEY_POLITICIAN_ID = "politicianId";
     public static final String KEY_POLITICIAN_NAME = "name";
     public static final String KEY_POLITICIAN_PARTY = "party";
     public static final String KEY_POLITICIAN_IMAGE_URL = "imageUrl";
