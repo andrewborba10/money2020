@@ -29,6 +29,12 @@ public class ServiceConstants {
     // Pledge API
     public static final String KEY_ORGANIZATION = "organization";
 
+    // Developer
+    public static final String KEY_DEVELOPER_ID = "politicianId";
+    public static final String KEY_DEVELOPER_NAME = "name";
+    public static final String KEY_DEVELOPER_PARTY = "party";
+    public static final String KEY_DEVELOPER_IMAGE_URL = "imageUrl";
+
     // Politician
     public static final String KEY_POLITICIAN_ID = "politicianId";
     public static final String KEY_POLITICIAN_NAME = "name";

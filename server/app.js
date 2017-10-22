@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
+var developers = require('./routes/developers');
 var button = require('./routes/button');
 var users = require('./routes/users');
 var elections = require('./routes/elections');
@@ -29,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/button', button);
+app.use('/developers', developers)
 app.use('/users', users);
 app.use('/elections', elections);
 app.use('/organizations', organizations);
