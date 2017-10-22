@@ -34,6 +34,8 @@ public class ServiceClient {
     private static String TAG = "ServiceClient";
     private static ServiceClient sServiceClient;
 
+    private static String IP_ADDRESS = "10.203.145.176";
+
     public static synchronized ServiceClient getInstance() {
         if (sServiceClient == null) {
             sServiceClient = new ServiceClient();
@@ -48,7 +50,7 @@ public class ServiceClient {
                                final Callback<IdentityVerificationResponse> callback) {
         final Request urlRequest = UrlClient
                 .create()
-                .post("http://10.101.1.208:3000/verify")
+                .post("http://" + IP_ADDRESS + ":3000/verify")
                 .param(KEY_SSN, request.mSsn)
                 .param(KEY_DATE_OF_BIRTH, request.mDateOfBirth)
                 .param(KEY_LAST_NAME, request.mLastName)
@@ -61,7 +63,7 @@ public class ServiceClient {
     public void getButton(final Callback<GetButtonResponse> callback) {
         final Request urlRequest = UrlClient
                 .create()
-                .get("http://10.101.1.208:3000/button")
+                .get("http://" + IP_ADDRESS + ":3000/button")
                 .ensureSuccess();
 
         new ServiceCallTask<>(urlRequest, GetButtonResponse.class, callback)
@@ -71,7 +73,7 @@ public class ServiceClient {
     public void getElections(final Callback<GetElectionsResponse> callback) {
         final Request urlRequest = UrlClient
                 .create()
-                .get("http://10.101.1.208:3000/elections")
+                .get("http://" + IP_ADDRESS + ":3000/elections")
                 .ensureSuccess();
 
         new ServiceCallTask<>(urlRequest, GetElectionsResponse.class, callback)
@@ -81,7 +83,7 @@ public class ServiceClient {
     public void getOrganizations(final Callback<GetOrganizationsResponse> callback) {
         final Request urlRequest = UrlClient
                 .create()
-                .get("http://10.101.1.208:3000/organizations")
+                .get("http://" + IP_ADDRESS + ":3000/organizations")
                 .ensureSuccess();
 
         new ServiceCallTask<>(urlRequest, GetOrganizationsResponse.class, callback)
@@ -92,7 +94,7 @@ public class ServiceClient {
                                  final Callback<GetOrganizationsResponse> callback) {
         final Request urlRequest = UrlClient
                 .create()
-                .get("http://10.101.1.208:3000/organizations/" + politicianId)
+                .get("http://" + IP_ADDRESS + ":3000/organizations/" + politicianId)
                 .ensureSuccess();
 
         new ServiceCallTask<>(urlRequest, GetOrganizationsResponse.class, callback)
@@ -103,7 +105,7 @@ public class ServiceClient {
                                    final Callback<GetUserInformationResponse> callback) {
         final Request urlRequest = UrlClient
                 .create()
-                .get("http://10.101.1.208:3000/users/" + userToken)
+                .get("http://" + IP_ADDRESS + ":3000/users/" + userToken)
                 .ensureSuccess();
 
         new ServiceCallTask<>(urlRequest, GetUserInformationResponse.class, callback)
@@ -116,7 +118,7 @@ public class ServiceClient {
                      final Callback<Void> callback) {
         final Request urlRequest = UrlClient
                 .create()
-                .post("http://10.101.1.208:3000/votes")
+                .post("http://" + IP_ADDRESS + ":3000/votes")
                 .param(KEY_TOKEN, userToken)
                 .param(KEY_ELECTION_ID, electionId)
                 .param(KEY_POLITICIAN_ID, politicianId)
@@ -131,7 +133,7 @@ public class ServiceClient {
                        final Callback<PledgeResponse> callback) {
         final Request urlRequest = UrlClient
                 .create()
-                .post("http://10.101.1.208:3000/organizations/pledge")
+                .post("http://" + IP_ADDRESS + ":3000/organizations/pledge")
                 .param(KEY_TOKEN, userToken)
                 .param(KEY_ORGANIZATION_ID, organizationId)
                 .ensureSuccess();
@@ -144,7 +146,7 @@ public class ServiceClient {
                          final Callback<GetVoteResponse> callback) {
         final Request urlRequest = UrlClient
                 .create()
-                .get("http://10.101.1.208:3000/elections/" + userToken)
+                .get("http://" + IP_ADDRESS + ":3000/elections/" + userToken)
                 .ensureSuccess();
 
         new ServiceCallTask<>(urlRequest, GetVoteResponse.class, callback)
@@ -155,7 +157,7 @@ public class ServiceClient {
                            final Callback<GetRewardsResponse> callback) {
         final Request urlRequest = UrlClient
                 .create()
-                .get("http://10.101.1.208:3000/rewards/" + userToken)
+                .get("http://" + IP_ADDRESS + ":3000/rewards/" + userToken)
                 .ensureSuccess();
 
         new ServiceCallTask<>(urlRequest, GetRewardsResponse.class, callback)
