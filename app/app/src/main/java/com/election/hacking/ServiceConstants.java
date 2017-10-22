@@ -53,7 +53,7 @@ public class ServiceConstants {
     public static final String KEY_ORGANIZATION_TAGS = "tags";
 
     // User
-    public static final String KEY_USER_PLEDGED_ORGANIZATION = "pledgedOrganization";
+    public static final String KEY_USER_PLEDGED_ORGANIZATION = "organization";
     public static final String KEY_USER_TOTAL_DONATED = "totalDonations";
 
     // Vote

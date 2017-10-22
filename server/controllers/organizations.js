@@ -13,30 +13,30 @@ function getOrganization(organizationId) {
 }
 
 function pledgeOrganization(userId, organizationId) {
+	console.log('organizationId');
 	console.log(organizationId);
 	organization = getOrganization(organizationId);
-	// console.log(db.items);
-	console.log(organizationId);
+	console.log('organization');
 	console.log(organization);
 
 	if (usersDb.has(function(item) {
 		return item['userId'] == userId
 	})) {
-		pledgedOrganization = usersDb.findByProperty('userId', userId);
-		pledgedOrganization['pledgedOrganization'] = organization;
-		return pledgedOrganization;
+		user = usersDb.findByProperty('userId', userId);
+		user['organization'] = organization;
+		return organization;
 	}
 
-	pledgedOrganization = {
+	user = {
 		'userId' : userId,
-		'pledgedOrganization' : organization,
+		'organization' : organization,
 		'totalDonations' : 0
 	};
 
 	user = usersDb.findByProperty('userId', userId);
-	user['pledgedOrganization'] = organization;
+	user['organization'] = organization;
 
-	return pledgedOrganization;
+	return organization;
 }
 
 function getOrganizations() {

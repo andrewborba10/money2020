@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.MainThread;
+import android.util.Log;
 
 import com.election.hacking.model.GetButtonResponse;
 import com.election.hacking.model.GetElectionsResponse;
@@ -169,6 +170,10 @@ public class ServiceClient {
             if (response == null) {
                 return null;
             }
+
+            Log.e("AARON", response.getBody());
+            Object o = mGson.fromJson(response.getBody(), mResponseClass);
+            Log.e("AARON", o == null ? "null" : o.toString());
 
             return mGson.fromJson(response.getBody(), mResponseClass);
         }

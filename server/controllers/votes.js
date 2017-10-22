@@ -22,6 +22,16 @@ function submitVote(userId, electionId, politicianId) {
 	getVote(electionId, politicianId)['votes'] = getVote(electionId, politicianId)['votes'] + 1;
 
 	// Track who user voted for
+
+	userVote = userVotesDb.find(function(item) {
+		return item['userId'] === userId && item['electionId'] === electionId
+	});
+
+	if (userVote != null) {
+		userVote['politicianId'] = politicianId;
+		return;
+	}
+
 	userVotesDb.add({
 		'userId' : userId,
 		'electionId' : electionId,

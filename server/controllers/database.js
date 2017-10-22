@@ -20,6 +20,12 @@ function Database(initStore) {
 		});
 	};
 
+	this.findAllByProperty = function(propertyName, propertyValue) {
+		return this.findAll(function(item) {
+			return item[propertyName] == propertyValue;
+		});
+	};
+
 	this.find = function(matcher) {
 		var matching = [];
 
@@ -258,7 +264,7 @@ var organizationsDb = new Database([
 		"relatedPoliticianIds" : [1, 4, 7, 10, 13],
 		"totalDonations" : "$2.4m",
 		"imageUrl" : "http://files.rightwingwatch.org/uploads/national-right-to-life-committee-logo-3-400x116.png",
-		"tags" : ["Pro-Life", "Anti-Euthnasia", "Legal Protections"]
+		"tags" : ["Pro-Life", "Anti-Euthanasia", "Legal Protections"]
 	}
 ]);
 
@@ -300,7 +306,7 @@ var rewardsDb = new Database([]);
 
 var usersDb = new Database([{
 	"userId" : "Nate",
-	"pledgedOrganization" : null,
+	"organization" : null,
 	"totalDonations" : 250
 }]);
 

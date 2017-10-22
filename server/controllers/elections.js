@@ -10,13 +10,15 @@ function getElections() {
 	return db.getAll();
 }
 
-function getElectionForUser(userId) {
+function getVotesForUser(userId) {
 	console.log(userVotesDb);
-	return userVotesDb.findByProperty('userId', userId);
+	votes = userVotesDb.findAllByProperty('userId', userId);
+
+	return votes;
 }
 
 module.exports = {
 	getElection : getElection,
 	getElections : getElections,
-	getElectionForUser : getElectionForUser
+	getVotesForUser : getVotesForUser
 }
