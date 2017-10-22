@@ -5,7 +5,7 @@
         <item name="colorAccent">@android:color/white</item>
         <item name="colorPrimary">@color/capital_one_blue</item>
         <item name="colorPrimaryDark">@color/capital_one_blue_dark</item>
-        <item name="android:windowBackground">@color/capital_one_blue</item>
+        <item name="android:windowBackground">@drawable/background_gradient_blue</item>
     </style>
 
 </resources>

@@ -1,7 +1,6 @@
 package com.election.hacking;
 
 import android.content.Context;
-import android.support.annotation.DrawableRes;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +33,7 @@ public class ElectionAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return elections.get(position).getId();
+        return position;
     }
 
     @Override
@@ -71,18 +70,7 @@ public class ElectionAdapter extends BaseAdapter {
                 TextView candidateParty = (TextView) candidateView.findViewById(R.id.candidateParty);
                 ImageView candidateImage = (ImageView) candidateView.findViewById(R.id.candidateImage);
 
-                @DrawableRes
-                int candidateDrawableId = R.drawable.ic_person_gray;
-                String party = candidate.getParty();
-                if (party != null) {
-                    if (party.toLowerCase().equals("democratic")) {
-                        candidateDrawableId = R.drawable.ic_person_blue;
-                    } else if (party.toLowerCase().equals("republican")) {
-                        candidateDrawableId = R.drawable.ic_person_red;
-                    }
-                }
-
-                candidateImage.setBackgroundResource(candidateDrawableId);
+                candidateImage.setBackgroundResource(ElectionUtil.getDrawableForCandidateParty(candidate));
                 candidateName.setText(candidate.getName());
                 candidateParty.setText(candidate.getParty());
                 holder.candidateListLayout.addView(candidateView);
@@ -90,6 +78,10 @@ public class ElectionAdapter extends BaseAdapter {
         }
 
         return convertView;
+    }
+
+    public List<Election> getElections() {
+        return elections;
     }
 
     private class ViewHolder {
