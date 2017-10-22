@@ -10,7 +10,7 @@ router.get('/:electionId', function(req, res, next) {
 });
 
 router.get('/', function(req, res, next) {
-	res.json(elections.getElections());
+	res.json({'elections': elections.getElections()});
 });
 
 module.exports = router;

@@ -10,7 +10,7 @@ function getVote(electionId, votedPersonId) {
 
 function submitVote(electionId, votedPersonId) {
 	if (getVote(electionId, votedPersonId) == null) {
-		return db.add({
+		db.add({
 			'electionId' : electionId,
 			'votedPersonId' : votedPersonId, 
 			'votes' : 0
