@@ -77,7 +77,7 @@ public class ElectionAdapter extends BaseAdapter {
                 candidateImage.setBackgroundResource(ElectionUtil.getDrawableForCandidateParty(candidate));
 
                 final String candidateImageUrl = candidate.getImageUrl();
-                Picasso.with(context).load(candidateImageUrl).into(candidateImage);
+                Picasso.with(context).load(candidateImageUrl).fit().into(candidateImage);
 
                 candidateName.setText(candidate.getName());
                 candidateParty.setText(candidate.getParty());
