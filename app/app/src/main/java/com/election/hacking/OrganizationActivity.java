@@ -84,7 +84,6 @@ public class OrganizationActivity extends AppCompatActivity {
                             public void onSuccess(final PledgeResponse result) {
                                 final Intent intent = new Intent();
                                 final Organization pledgedOrganization = result.getOrganization();
-                                Log.e("AARON", pledgedOrganization.toString());
                                 intent.putExtra(CausesFragment.KEY_ORGANIZATION, pledgedOrganization);
                                 setResult(Activity.RESULT_OK, intent);
                                 Toast
