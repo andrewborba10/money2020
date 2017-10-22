@@ -1,62 +1,90 @@
 package com.election.hacking;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
 import com.election.hacking.model.IdentityVerificationRequest;
 import com.election.hacking.model.IdentityVerificationResponse;
 
-public class VerifyWithPersonalInfoActivity extends Activity {
-    private static final String TAG = "VerifyWithPersonalInfoActivity";
+import java.text.ParseException;
+
+public class VerifyWithPersonalInfoActivity extends AppCompatActivity {
+    private static final String TAG = "VerifyWPersInfActivity";
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.verify_with_personal_info);
-        configureVerifyButton();
-    }
 
-    private void configureVerifyButton() {
-        final View viewById = findViewById(R.id.verifyButton);
-        viewById.setOnClickListener(new View.OnClickListener() {
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        getSupportActionBar().setTitle("Login");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        findViewById(R.id.verifyButton).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(final View view) {
+            public void onClick(View v) {
                 verify();
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void verify() {
         final String ssn = getTextFromEditText(R.id.ssn);
         final String dateOfBirth = getTextFromEditText(R.id.dateOfBirth);
         final String lastName = getTextFromEditText(R.id.lastName);
-        ServiceClient
-                .getInstance()
-                .verifyIdentity(new IdentityVerificationRequest.Builder()
-                        .withSsn(Long.parseLong(ssn))
-                        .withDateOfBirth(dateOfBirth)
-                        .withLastName(lastName)
-                        .build(), new ServiceClient.Callback<IdentityVerificationResponse>() {
-                    @Override
-                    public void onSuccess(final IdentityVerificationResponse result) {
-                        MainActivity.start(VerifyWithPersonalInfoActivity.this);
-                    }
 
-                    @Override
-                    public void onError(final Exception e) {
-                        Log.e(TAG, "Failed to verify user: " + e);
-                    }
-                });
+        if (ssn.isEmpty() || dateOfBirth.isEmpty() || lastName.isEmpty()) {
+            Snackbar.make(findViewById(android.R.id.content), "Please fill in all fields.", Snackbar.LENGTH_SHORT).show();
+        } else {
+            try {
+                long ssnLong = Long.parseLong(ssn);
+
+                ServiceClient
+                        .getInstance()
+                        .verifyIdentity(new IdentityVerificationRequest.Builder()
+                                .withSsn(ssnLong)
+                                .withDateOfBirth(dateOfBirth)
+                                .withLastName(lastName)
+                                .build(), new ServiceClient.Callback<IdentityVerificationResponse>() {
+                            @Override
+                            public void onSuccess(final IdentityVerificationResponse result) {
+                                MainActivity.start(VerifyWithPersonalInfoActivity.this);
+                            }
+
+                            @Override
+                            public void onError(final Exception e) {
+                                Log.e(TAG, "Failed to verify user: " + e);
+                            }
+                        });
+            } catch (NumberFormatException e) {
+                Snackbar.make(findViewById(android.R.id.content), "Please enter only numbers into SSN field.", Snackbar.LENGTH_SHORT).show();
+            } catch (ParseException e) {
+                Snackbar.make(findViewById(android.R.id.content), "Please date of birth in the format 'mm/dd/yyyy'.", Snackbar.LENGTH_SHORT).show();
+            }
+        }
     }
 
     private String getTextFromEditText(@IdRes final int id) {
-        final EditText viewById = (EditText) findViewById(id);
-        return viewById.getText().toString();
+        EditText viewById = (EditText) findViewById(id);
+        Editable text = viewById.getText();
+        return text != null ? text.toString().trim() : "";
     }
-
-
 }
