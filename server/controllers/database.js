@@ -185,7 +185,7 @@ var organizationsDb = new Database([
 	{
 		"organizationId" : 1,
 		"title" : "Clinton Foundation",
-		"description" : "We believe that the best way to unlock human potential is through the power of creative collaboration...",
+		"description" : "We believe that the best way to unlock human potential is through the power of creative collaboration. That's why we build partnerships between businesses, NGOs, governments, and individuals everywhere to work faster, leaner, and better; to find solutions that last; and to transform lives and communities from what they are today to what they can be, tomorrow.",
 		"relatedPersonIds" : [0, 3, 6, 9, 12]
 	},
 	{
@@ -260,8 +260,9 @@ var votesDb = new Database([
 	}	
 ]);
 
-var rewardsDb = new Database([
-]);
+var rewardsDb = new Database([]);
+
+var usersDb = new Database([]);
 
 module.exports = {
 	getElectionsDb : function() {
@@ -275,5 +276,8 @@ module.exports = {
 	},
 	getRewardsDb : function() {
 		return rewardsDb;
+	},
+	getUsersDb : function() {
+		return usersDb;
 	}
 };

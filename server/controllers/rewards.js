@@ -15,7 +15,7 @@ function cacheRewards(userId, rewardsResponse) {
 	db.add({
 		'userId' : userId,
 		'rewards' : rewardsResponse
-	})
+	});
 }
 
 function deductRewards(userId, amountDeducted) {

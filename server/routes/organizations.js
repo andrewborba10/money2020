@@ -13,4 +13,11 @@ router.get('/', function(req, res, next) {
 	res.json({'organizations': organizations.getOrganizations()});
 });
 
+router.post('/pledged', function(req, res, next) {
+	userId = req.body.token;
+	organizationId = req.body.organizationId;
+
+	res.json({'organization': organizations.pledgeOrganization(userId, organizationId)})
+});
+
 module.exports = router;
