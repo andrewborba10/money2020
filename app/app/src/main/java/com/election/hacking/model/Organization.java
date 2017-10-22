@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.List;
 
 import static com.election.hacking.ServiceConstants.KEY_ORGANIZATION_DESCRIPTION;
 import static com.election.hacking.ServiceConstants.KEY_ORGANIZATION_ID;
@@ -47,6 +49,10 @@ public class Organization implements Serializable {
 
     public String getOrganizationImageUrl() {
         return mOrganizationImageUrl;
+    }
+
+    public List<String> getOrganizationTags() {
+        return Arrays.asList("guns", "nra", "health");
     }
 
     @Override
