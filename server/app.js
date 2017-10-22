@@ -9,7 +9,9 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var elections = require('./routes/elections');
 var organizations = require('./routes/organizations');
-var votes = require('./routes/votes')
+var votes = require('./routes/votes');
+var verify = require('./routes/verify');
+var rewards = require('./routes/rewards')
 
 var app = express();
 
@@ -30,7 +32,8 @@ app.use('/users', users);
 app.use('/elections', elections);
 app.use('/organizations', organizations);
 app.use('/votes', votes);
-
+app.use('/verify', verify);
+app.use('/rewards', rewards);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
