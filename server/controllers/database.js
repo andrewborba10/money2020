@@ -213,7 +213,7 @@ var organizationsDb = new Database([
 		"relatedPersonIds" : [0, 3, 6, 9, 12],
 		"totalDonations" : "$5.7m",
 		"imageUrl" : "https://upload.wikimedia.org/wikipedia/en/thumb/f/f3/American_Civil_Liberties_Union_logo.svg/1280px-American_Civil_Liberties_Union_logo.svg.png",
-		"tags" : []
+		"tags" : ["Civil Liberties", "Freedom of Expression", "Legal Protection for Minorities"]
 	},
 	{
 		"organizationId" : 3,
@@ -222,7 +222,7 @@ var organizationsDb = new Database([
 		"relatedPersonIds" : [0, 3, 6, 9, 12],
 		"totalDonations" : "$9.8m",
 		"imageUrl" : "http://bostonnow.org/wp-content/uploads/2016/09/NOW.png",
-		"tags" : []
+		"tags" : ["Women's Rights", "Equality", "Grassroots Activism"]
 	},
 	{
 		"organizationId" : 4,
@@ -231,7 +231,7 @@ var organizationsDb = new Database([
 		"relatedPersonIds" : [2, 5, 8, 11, 14],
 		"totalDonations" : "$6.8m",
 		"imageUrl" : "https://yt3.ggpht.com/-W_3EWqxKSLM/AAAAAAAAAAI/AAAAAAAAAAA/43OT-enqW4Y/s900-c-k-no-mo-rj-c0xffffff/photo.jpg",
-		"tags" : []
+		"tags" : ["Climate and Energy Control", "Wildlife Preservation", "Environmental Law"]
 	},
 	{
 		"organizationId" : 5,
@@ -240,7 +240,7 @@ var organizationsDb = new Database([
 		"relatedPersonIds" : [2, 5, 8, 11, 14],
 		"totalDonations" : "$1.5m",
 		"imageUrl" : "https://res.cloudinary.com/crowdpac/image/upload/logo-square.jpg",
-		"tags" : []
+		"tags" : ["Independents Funding", "Transparency", "Crowd-fudning"]
 	},
 	{
 		"organizationId" : 6,
@@ -249,16 +249,16 @@ var organizationsDb = new Database([
 		"relatedPersonIds" : [1, 4, 7, 10, 13],
 		"totalDonations" : "$5.2m",
 		"imageUrl" : "http://dailysignal.com/wp-content/themes/daily-signal/assets/images/brand/the-heritage-foundation-logo-blue.png",
-		"tags" : []		
+		"tags" : ["Free Enterprise", "Limited Government", "National Defense"]		
 	},
 	{
 		"organizationId" : 7,
-		"title" : "Planned Parenthood",
-		"description" : "Planned Parenthood is a trusted health care provider, an informed educator, a passionate advocate, and a global partner helping similar organizations around the world. Planned Parenthood delivers vital reproductive health care, sex education, and information to millions of people worldwide.",
+		"title" : "National Right to Life",
+		"description" : "Founded in 1968, National Right to Life is the nation's oldest and largest pro-life organization. National Right to Life is the federation of 50 state right-to-life affiliates and more than 3,000 local chapters. Through education and legislation, National Right to Life is working to restore legal protection to the most defenseless members of our society who are threatened by abortion, infanticide, assisted suicide and euthanasia.",
 		"relatedPersonIds" : [1, 4, 7, 10, 13],
 		"totalDonations" : "$2.4m",
-		"imageUrl" : "https://upload.wikimedia.org/wikipedia/en/thumb/2/2c/Planned_Parenthood_logo.svg/1200px-Planned_Parenthood_logo.svg.png",
-		"tags" : []		
+		"imageUrl" : "http://nrlc.org/site/wp-content/uploads/header1015.png",
+		"tags" : ["Pro-Life", "Anti-Euthnasia", "Legal Protections"]
 	}
 ]);
 

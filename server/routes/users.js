@@ -6,7 +6,7 @@ router.get('/:token', function(req, res, next) {
 	var userId = req.params.token;
 	var user = users.getUser(userId);
 
-	res.json(user);
+	res.json({'user' : user});
 });
 
 module.exports = router;
