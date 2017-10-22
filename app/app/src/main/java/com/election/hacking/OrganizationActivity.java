@@ -1,10 +1,13 @@
 package com.election.hacking;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,7 +25,13 @@ public class OrganizationActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_organization);
 
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        getSupportActionBar().setTitle("Cause Details");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        FrameLayout organizationImageContainer = (FrameLayout) findViewById(R.id.organizationImageContainer);
         ImageView organizationImage = (ImageView) findViewById(R.id.organizationImage);
+        ImageView organizationHeartIcon = (ImageView) findViewById(R.id.organizationHeartIcon);
         TextView organizationName = (TextView) findViewById(R.id.organizationName);
         TextView organizationDescription = (TextView) findViewById(R.id.organizationDescription);
         TextView totalDonationsToDate = (TextView) findViewById(R.id.totalDonationsToDate);
@@ -32,10 +41,15 @@ public class OrganizationActivity extends AppCompatActivity {
         Organization organization = (Organization) getIntent().getSerializableExtra(KEY_ORGANIZATION);
         if (organization != null) {
             if (organizationImage != null) {
+                organizationImageContainer.setBackgroundColor(Color.WHITE);
+                organizationHeartIcon.setVisibility(View.GONE);
                 Picasso
                         .with(this)
                         .load(organization.getOrganizationImageUrl())
                         .into(organizationImage);
+            } else {
+                organizationImageContainer.setBackgroundColor(Color.TRANSPARENT);
+                organizationHeartIcon.setVisibility(View.VISIBLE);
             }
 
             organizationName.setText(organization.getOrganizationTitle());
