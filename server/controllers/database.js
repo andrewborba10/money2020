@@ -25,6 +25,8 @@ function Database(initStore) {
 				return item;
 			}
 		}
+
+		return null;
 	}
 
 	this.findAll = function(matcher) {
@@ -65,7 +67,8 @@ var electionsDb = new Database([
 		"title" : "2016 Presidential Election",
 		"description" : "Election for the president of the United States.",
 		"dateOpen" : "11/01/2016",
-		"dateClosed" : "11/15/2016"
+		"dateClosed" : "11/15/2016",
+		"isOpen" : true
 	},
 
 	{
@@ -89,8 +92,9 @@ var electionsDb = new Database([
 		],
 		"title" : "2016 Nevada U.S. Senate",
 		"description" : "Election for the Nevada U.S. Senate position.",
-		"dateOpen" : "03/01/2016",
-		"dateClosed" : "03/15/2016"
+		"dateOpen" : "11/01/2016",
+		"dateClosed" : "11/30/2016",
+		"isOpen" : true		
 	},
 
 	{
@@ -114,8 +118,9 @@ var electionsDb = new Database([
 		],
 		"title" : "2016 Nevada U.S. House",
 		"description" : "Election for the Nevada House Representative.",
-		"dateOpen" : "03/01/2016",
-		"dateClosed" : "03/15/2016"
+		"dateOpen" : "11/01/2016",
+		"dateClosed" : "11/30/2016",
+		"isOpen" : true		
 	},
 
 	{
@@ -140,7 +145,8 @@ var electionsDb = new Database([
 		"title" : "2016 City of Las Vegas Judge",
 		"description" : "Election for the judge of the city of Las Vegas, Nevada.",
 		"dateOpen" : "06/01/2016",
-		"dateClosed" : "06/15/2016"
+		"dateClosed" : "06/15/2016",
+		"isOpen" : false
 	},
 
 	{
@@ -165,7 +171,8 @@ var electionsDb = new Database([
 		"title" : "2016 City of Las Vegas Mayor",
 		"description" : "Election for the mayor of the city of Las Vegas, Nevada.",
 		"dateOpen" : "06/01/2016",
-		"dateClosed" : "06/15/2016"
+		"dateClosed" : "06/15/2016",
+		"isOpen" : false
 	}	
 ]);
 
@@ -216,14 +223,14 @@ var organizationsDb = new Database([
 
 var votesDb = new Database([
 	{
-		"userId" : 1,
 		"electionId" : 1,
-		"votedPersonId" : 1
+		"votedPersonId" : 1,
+		"votes" : 500
 	},
 	{
-		"userId" : 2,
 		"electionId" : 1,
-		"votedPersonId" : 1
+		"votedPersonId" : 1,
+		"votes" : 1000
 	}	
 ]);
 

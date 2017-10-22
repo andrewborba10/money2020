@@ -3,11 +3,15 @@ var votes = require('../controllers/votes.js');
 var router = express.Router();
 
 router.post('/', function(req, res, next) {
-	var userId = req.args.userId;
-	var electionId = req.args.electionId;
-	var votedPersonId = req.args.votedPersonId;
+	console.log('here');
+	console.log(req.params);
+	console.log(req.args);
+	console.log(req.body);
+	var electionId = req.body.electionId;
+	var votedPersonId = req.body.votedPersonId;
+	console.log(electionId);
 
-	votes.submitVote(userId, electionId, votedPersonId)
+	votes.submitVote(electionId, votedPersonId)
 });
 
 router.get('/:electionId', function(req, res, next) {

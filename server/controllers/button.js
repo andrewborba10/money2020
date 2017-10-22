@@ -22,8 +22,15 @@ function callback(error, response, body) {
     }
 }
 
-function getButton() {
-    request(options, callback);
+function getButton(cb) {
+    request(options, (error, response, body) => {
+        var data = response.body;
+        var result = {
+            "Success": "Button successfully retrieved.",
+            "url": parseButton(data) 
+        }
+        cb(result);
+    });
 }
 
 function parseButton(button) {
